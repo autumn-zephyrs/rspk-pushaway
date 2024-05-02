@@ -6,6 +6,12 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage: {
+                'blastoise': "url('http://localhost/images/blast.png')",
+                'tyranitar': "url('http://localhost/images/ttar.png')",
+                'raichu': "url('http://localhost/images/raichu.png')",
+                'reporter': "url('http://localhost/images/tv.png')",
+            },
         },
     },
     variants: {
