@@ -4,6 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
+use App\Models\Tournament;
+use App\Models\TournamentStanding;
+use App\Models\TournamentPairing;
+use App\Models\Deck;
+use App\Models\Decklist;
 
 class GetTournaments extends Command
 {
@@ -41,6 +46,63 @@ class GetTournaments extends Command
             ]
         ]);
         $tournaments = json_decode($response->getBody()->getContents());
-        var_dump($tournaments);
+        foreach ($tournaments as $tournament) {
+            $t = Tournament::firstOrCreate(
+                [
+                    'limitless_id' => $tournament->id
+                ],
+                [
+                    'format'    =>  $tournament->format,
+                    'name'      =>  $tournament->name,
+                    'players'   =>  $tournament->players,
+                    'date'      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date))
+                ]
+            );
+            $response = $client->request('GET', 'tournaments/' . $tournament->id . '/standings', [
+                    'headers' =>  
+                [
+                    'X-Access-Key'=> env("LIMITLESS_KEY")
+                ],
+            ]);
+            $standings = json_decode($response->getBody()->getContents());
+            foreach($standings as $standing) {
+                $s = TournamentStanding::create(
+                    [
+                        'tournament_limitless_id'   =>  $t->limitless_id,
+                        'player_username'           =>  $standing->player,
+                        'player_name'               =>  $standing->name,
+                        'country'                   =>  $standing->country,
+                        'placement'                 =>  $standing->placing,
+                        'drop'                      =>  $standing->drop
+                    ]
+                );
+
+                $d = Deck::create(
+                    [
+                        'tournament_standing_id'    =>  $s->id,
+                        'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
+                        'player_username'           =>  $standing->player,
+                        'player_name'               =>  $standing->name,
+                    ]
+                );
+                
+                $deck = $standing->decklist;
+                if(!empty($deck)) {
+                    foreach ($deck as $cardType) {
+                        foreach($cardType as $card) {
+                            $dl = Decklist::create(
+                                [
+                                    'deck_id'                   =>  $s->id,
+                                    'name'                      =>  $card->name,
+                                    'count'                     =>  $card->count,
+                                    'set'                       =>  $card->set,
+                                    'number'                    =>  $card->number,
+                                ]
+                            );
+                        }
+                    }       
+                }
+            }
+        }
     }
 }
