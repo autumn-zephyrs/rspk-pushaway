@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tournament extends Model
 {
@@ -20,5 +21,10 @@ class Tournament extends Model
      * @var array
      */
     protected $fillable = ['limitless_id', 'name', 'format', 'name', 'players', 'date'];
+
+    public function tournamentStandings(): HasMany
+    {
+        return $this->hasMany(TournamentStanding::class, 'limitless_id', 'tournament_limitless_id');
+    }
 
 }

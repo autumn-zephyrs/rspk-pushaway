@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('decklists', function (Blueprint $table) {
+        Schema::create('deck_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('deck_id');
+            $table->text('identifier');
             $table->text('name');
-            $table->integer('count');
-            $table->text('set');
-            $table->text('number');
-            $table->softDeletes();
-            $table->timestamps();
+            $table->text('icon_primary')->nullable();
+            $table->text('icon_secondary')->nullable();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('decks');
+        Schema::dropIfExists('deck_types');
     }
 };

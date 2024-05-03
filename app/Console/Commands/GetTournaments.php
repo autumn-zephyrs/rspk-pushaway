@@ -8,7 +8,7 @@ use App\Models\Tournament;
 use App\Models\TournamentStanding;
 use App\Models\TournamentPairing;
 use App\Models\Deck;
-use App\Models\Decklist;
+use App\Models\DeckCard;
 
 class GetTournaments extends Command
 {
@@ -90,7 +90,7 @@ class GetTournaments extends Command
                 if(!empty($deck)) {
                     foreach ($deck as $cardType) {
                         foreach($cardType as $card) {
-                            $dl = Decklist::create(
+                            $dl = DeckCard::create(
                                 [
                                     'deck_id'                   =>  $s->id,
                                     'name'                      =>  $card->name,
