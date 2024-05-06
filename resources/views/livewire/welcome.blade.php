@@ -1,12 +1,12 @@
 <div class="p-6 mx-auto max-w-7xl lg:p-8">
     <div class="flex justify-center">
         <div class="font-bold mt-6 text-6xl font-semibold text-gray-900 dark:text-white">
-            🦌 PUSHAWAY RSPK 🦌
+            📡 HOLON RESEARCH TOWER 📡
         </div>
     </div>
     <div class="mt-16">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-            <a href="/latest" class="scale-100 bg-tyranitar bg-cover via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
+            <a href="/decks" class="scale-100 bg-tyranitar bg-cover via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
                 <div class="rounded-lg w-full grid grid-rows-3">
                     <div class="row-span-2 items-center flex"></div>
                     <div class="row-span-1 rounded-b-lg px-6 py-2 bg-black/50">                            

@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('decks', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->integer('tournament_standing_id')->nullable();
-            $table->integer('featured')->nullable();
-            $table->text('player_username')->nullable();
-            $table->text('player_name')->nullable();
-            $table->text('identifier')->nullable();
-            $table->softDeletes();
+            $table->text('name');
+            $table->text('set_code');
+            $table->text('set_name')->nullable();
+            $table->text('number');
+            $table->text('type');
+            $table->text('image_small')->nullable();
+            $table->text('image_large')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('decks');
+        Schema::dropIfExists('cards');
     }
 };

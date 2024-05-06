@@ -9,6 +9,9 @@ use App\Models\TournamentStanding;
 use App\Models\TournamentPairing;
 use App\Models\Deck;
 use App\Models\DeckCard;
+use App\Models\Card;
+use Symfony\Component\Console\Output\ConsoleOutput;
+Use PokemonTCG\Pokemon;
 
 class GetTournaments extends Command
 {
@@ -46,6 +49,12 @@ class GetTournaments extends Command
             ]
         ]);
         $tournaments = json_decode($response->getBody()->getContents());
+
+        $progressBar = $this->output->createProgressBar(count($tournaments));
+        $output = new ConsoleOutput();
+        $progressBar->setMessage('Importing decks and tournament data...');
+        $progressBar->start();
+
         foreach ($tournaments as $tournament) {
             $t = Tournament::firstOrCreate(
                 [
@@ -88,21 +97,128 @@ class GetTournaments extends Command
                 
                 $deck = $standing->decklist;
                 if(!empty($deck)) {
-                    foreach ($deck as $cardType) {
-                        foreach($cardType as $card) {
-                            $dl = DeckCard::create(
+                    foreach ($deck as $cardType => $cards) {
+                        foreach($cards as $card) {
+                            if($card->name === "Lightning Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  109,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Lightning Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Fire Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  108,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Fire Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Fighting Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  105,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Fighting Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Psychic Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  107,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Psychic Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Metal Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  94,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Metal Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Water Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  106,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Water Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Darkness Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  93,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Darkness Energy',
+                                    ]
+                                );
+                            }
+                            elseif($card->name === "Grass Energy") {
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  'RS',
+                                        'number'                    =>  104,
+                                    ],
+                                    [
+                                        'type'                      => 'energy',
+                                        'name'                      => 'Grass Energy',
+                                    ]
+                                );
+                            } else{
+                                $c = Card::firstOrCreate(
+                                    [
+                                        'set_code'                  =>  $card->set,
+                                        'number'                    =>  $card->number,
+                                    ],
+                                    [
+                                        'type'                      => $cardType,
+                                        'name'                      => $card->name,
+                                    ]
+                                );
+                            }
+                            $dc = DeckCard::create(
                                 [
                                     'deck_id'                   =>  $s->id,
-                                    'name'                      =>  $card->name,
+                                    'card_id'                   =>  $c->id,
                                     'count'                     =>  $card->count,
-                                    'set'                       =>  $card->set,
-                                    'number'                    =>  $card->number,
                                 ]
                             );
                         }
                     }       
                 }
             }
+            $progressBar->advance();
         }
+        $progressBar->finish();
     }
 }

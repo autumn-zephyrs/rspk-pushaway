@@ -23,7 +23,7 @@ class Deck extends Model
      */
     protected $fillable = ['tournament_standing_id', 'featured_id', 'identifier', 'player_username', 'player_name'];
 
-    public function cards(): HasMany
+    public function deckCards(): HasMany
     {
         return $this->hasMany(DeckCard::class);
     }

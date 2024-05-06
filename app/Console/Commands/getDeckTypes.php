@@ -41,6 +41,9 @@ class getDeckTypes extends Command
             ]
         ]);
         $decks = json_decode($response->getBody()->getContents());
+        $progressBar = $this->output->createProgressBar(count($decks));
+        $progressBar->setMessage('Importing deck types...');
+        $progressBar->start();
         foreach ($decks as $deck) { 
             if(isset($deck->generation)){
                 if($deck->generation === 3) {
@@ -68,6 +71,7 @@ class getDeckTypes extends Command
                     }
                 }
             }
+            $progressBar->advance();
         }
         $o = DeckType::firstOrCreate(
             [   
@@ -79,5 +83,7 @@ class getDeckTypes extends Command
                 'icon_secondary'    =>  null 
             ]   
         );
+        $progressBar->finish();
+        info('Import finished! \n');
     }
 }

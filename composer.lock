@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33cd055da36acc97f84b119d2cb96346",
+    "content-hash": "df0fa5a8877322eeb337706b7f06f102",
     "packages": [
         {
             "name": "brick/math",
@@ -2689,6 +2689,63 @@
                 }
             ],
             "time": "2023-11-12T21:59:55+00:00"
+        },
+        {
+            "name": "pokemon-tcg/pokemon-tcg-sdk-php",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PokemonTCG/pokemon-tcg-sdk-php.git",
+                "reference": "ef64074569fa217b7fdeb11c182c35bdc893d179"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PokemonTCG/pokemon-tcg-sdk-php/zipball/ef64074569fa217b7fdeb11c182c35bdc893d179",
+                "reference": "ef64074569fa217b7fdeb11c182c35bdc893d179",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^2.0",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.2",
+                "php": "^7.3 || ^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "dms/phpunit-arraysubset-asserts": "^0.2.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pokemon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CJ O'Hara",
+                    "email": "mmonkey@gmail.com"
+                }
+            ],
+            "description": "This is the Pokémon TCG SDK PHP implementation. It is a wrapper around the Pokémon TCG API of pokemontcg.io.",
+            "keywords": [
+                "pokemon",
+                "sdk",
+                "tcg"
+            ],
+            "support": {
+                "issues": "https://github.com/PokemonTCG/pokemon-tcg-sdk-php/issues",
+                "source": "https://github.com/PokemonTCG/pokemon-tcg-sdk-php/tree/2.1.0"
+            },
+            "time": "2021-08-10T16:34:36+00:00"
         },
         {
             "name": "psr/clock",

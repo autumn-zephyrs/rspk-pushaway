@@ -20,11 +20,16 @@ class DeckCard extends Model
      *
      * @var array
      */
-    protected $fillable = ['deck_id', 'name', 'count', 'set', 'number'];
+    protected $fillable = ['deck_id', 'card_id', 'count'];
 
     public function deck(): BelongsTo
     {
         return $this->belongsTo(Deck::class);
+    }
+
+    public function card(): BelongsTo
+    {
+        return $this->belongsTo(Card::class);
     }
 
 }

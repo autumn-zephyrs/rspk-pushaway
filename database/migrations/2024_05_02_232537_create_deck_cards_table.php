@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('deck_cards', function (Blueprint $table) {
             $table->id();
             $table->integer('deck_id');
-            $table->text('name');
+            $table->integer('card_id');
             $table->integer('count');
-            $table->text('set');
-            $table->text('number');
             $table->softDeletes();
             $table->timestamps();
         });
