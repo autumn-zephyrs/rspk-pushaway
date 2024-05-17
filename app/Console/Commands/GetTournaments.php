@@ -75,8 +75,13 @@ class GetTournaments extends Command
             ]);
             $standings = json_decode($response->getBody()->getContents());
             foreach($standings as $standing) {
-                $s = TournamentStanding::create(
+                $s = TournamentStanding::firstOrcreate(
                     [
+                        'tournament_limitless_id'   =>  $t->limitless_id,
+                        'player_username'           =>  $standing->player,
+                    ],
+                    [   
+                        'player_username'           =>  $standing->player,
                         'tournament_limitless_id'   =>  $t->limitless_id,
                         'player_username'           =>  $standing->player,
                         'player_name'               =>  $standing->name,
@@ -86,9 +91,11 @@ class GetTournaments extends Command
                     ]
                 );
 
-                $d = Deck::create(
+                $d = Deck::firstOrCreate(
                     [
                         'tournament_standing_id'    =>  $s->id,
+                    ],
+                    [
                         'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                         'player_username'           =>  $standing->player,
                         'player_name'               =>  $standing->name,

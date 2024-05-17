@@ -28,21 +28,8 @@ class ShowDecks extends Component
         $this->identifier = $input;
     }
 
-    public function next() 
-    {
-        $this->page++;
-        $this->nextPage();
-    }
+    public function copyDeck() {
 
-    public function getCard()
-    {
-
-    }
-
-    public function previous() 
-    {
-        $this->page--;
-        $this->previousPage();
     }
 
     public function render()

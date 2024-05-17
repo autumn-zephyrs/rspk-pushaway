@@ -24,7 +24,11 @@ class Tournament extends Model
 
     public function tournamentStandings(): HasMany
     {
-        return $this->hasMany(TournamentStanding::class, 'limitless_id', 'tournament_limitless_id');
+        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id');
+    }
+
+    public function topStandings() {
+        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id')->take(8);
     }
 
 }

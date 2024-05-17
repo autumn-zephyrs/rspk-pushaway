@@ -11,6 +11,7 @@ module.exports = {
                 'tyranitar': "url('http://localhost/images/ttar.png')",
                 'raichu': "url('http://localhost/images/raichu.png')",
                 'reporter': "url('http://localhost/images/tv.png')",
+                'holon': "url('http://localhost/images/hrt.jpg')",
             },
         },
     },

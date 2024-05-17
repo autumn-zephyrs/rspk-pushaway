@@ -54,7 +54,7 @@
 
                 </div>
             </a>
-            <a href="/articles" class="scale-100 bg-reporter bg-cover via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
+            <a href="/articles" class="pointer-events-none grayscale scale-100 bg-reporter bg-cover via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
                 <div class="rounded-lg w-full grid grid-rows-3"1`>
                     <div class="row-span-2 items-center flex"></div>
                     <div class="row-span-1 rounded-b-lg px-6 py-2 bg-black/50">                            
@@ -64,7 +64,7 @@
                         </h2>
 
                         <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                            Read articles and news posts by our site.
+                            Coming soon!
                         </p>
                     </div>
 
@@ -72,7 +72,7 @@
             </a>
         </div>
     </div>
-    <div class="flex justify-center px-0 mt-16 sm:items-center sm:justify-between">
+    <div class="flex justify-center px-0 mt-8 sm:items-center sm:justify-between">
         <div class="text-sm text-center text-gray-500 dark:text-gray-400 sm:text-left">
             <div class="flex items-center gap-4">
                 <a href="https://ko-fi.com/autumnzephyrs" target="_blank" class="inline-flex items-center group hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">
@@ -84,8 +84,7 @@
             </div>
         </div>
         <div class="ml-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) & Livewire
-            {{ \Composer\InstalledVersions::getPrettyVersion('livewire/livewire') }}
+           By <a href="https://twitter.com/AutumnZephyrs_" target="_blank" class="hover:text-gray-700 dark:hover:text-white">Autumn Lamb</a>
         </div>
     </div>
 </div>
