@@ -13,6 +13,8 @@ use App\Livewire\ShowDecks;
 use App\Livewire\ShowFeatured;
 use App\Livewire\ShowArticles;
 use App\Livewire\ShowTournaments;
+use App\Livewire\ShowStandings;
+use App\Livewire\ShowStanding;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,8 @@ Route::get('decks', ShowDecks::class)->name('decks');
 Route::get('featured', ShowFeatured::class)->name('featured');
 Route::get('tournaments', ShowTournaments::class)->name('tournaments');
 Route::get('articles', ShowArticles::class)->name('articles');
+Route::get('tournaments/{limitless_id}', ShowStandings::class)->name('standings');
+Route::get('tournaments/standings/{id}', ShowStanding::class)->name('standing');
 
 Route::get('password/reset', Email::class)
     ->name('password.request');

@@ -38,7 +38,7 @@
                     <div class="px-12 py-4">
                         <div class="flex justify-between items-top">
                             <div class="items-center flex gap-2">
-                                <h2 class="text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</h2>
+                                <a href="/tournaments/standings/{{$deck->tournamentStanding->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
                                     @if($deck->deckType->icon_primary !== 'substitute')
                                         <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">

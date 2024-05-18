@@ -20,7 +20,7 @@ class GetTournaments extends Command
      *
      * @var string
      */
-    protected $signature = 'app:get-tournaments';
+    protected $signature = 'get:tournaments';
 
     /**
      * The console command description.
@@ -74,6 +74,7 @@ class GetTournaments extends Command
                 ],
             ]);
             $standings = json_decode($response->getBody()->getContents());
+
             foreach($standings as $standing) {
                 $s = TournamentStanding::firstOrcreate(
                     [
@@ -224,6 +225,35 @@ class GetTournaments extends Command
                     }       
                 }
             }
+
+            $response = $client->request('GET', 'tournaments/' . $tournament->id . '/pairings', [
+                    'headers' =>  
+                [
+                    'X-Access-Key'=> env("LIMITLESS_KEY")
+                ],
+            ]);
+
+            $pairings = json_decode($response->getBody()->getContents());
+
+            foreach($pairings as $pairing) {    
+                $p = TournamentPairing::firstOrCreate(
+                    [
+                        'tournament_limitless_id'   =>  $t->limitless_id,
+                        'phase'                     =>  isset($pairing->phase) ? $pairing->phase : null,
+                        'round'                     =>  $pairing->round,
+                        'player_1'                  =>  $pairing->player1,
+                    ],
+                    [   
+                        'table'                     =>  isset($pairing->table) ? $pairing->table : null,
+                        'match'                     =>  isset($pairing->match) ? $pairing->match : null,
+                        'winner'                    =>  isset($pairing->winner) ? $pairing->winner : null,
+                        'player_2'                  =>  isset($pairing->player2) ? $pairing->player2 : null
+                    ]
+                );
+            }
+
+        $pairings = json_decode($response->getBody()->getContents());
+
             $progressBar->advance();
         }
         $progressBar->finish();

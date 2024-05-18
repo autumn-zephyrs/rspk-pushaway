@@ -13,7 +13,7 @@ class GetImages extends Command
      *
      * @var string
      */
-    protected $signature = 'app:get-images';
+    protected $signature = 'get:images';
 
     /**
      * The console command description.

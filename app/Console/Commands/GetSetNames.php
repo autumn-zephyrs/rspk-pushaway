@@ -13,7 +13,7 @@ class GetSetNames extends Command
      *
      * @var string
      */
-    protected $signature = 'app:get-set-names';
+    protected $signature = 'get:set-names';
 
     /**
      * The console command description.

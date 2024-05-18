@@ -13,7 +13,7 @@ class getDeckTypes extends Command
      *
      * @var string
      */
-    protected $signature = 'app:get-decks';
+    protected $signature = 'get:decks';
 
     /**
      * The console command description.
