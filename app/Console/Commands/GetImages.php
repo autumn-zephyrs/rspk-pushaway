@@ -48,7 +48,7 @@ class GetImages extends Command
             $i = Pokemon::Card()->where(
                 [
                     'set.name' => $card->set_name,
-                    "number" => $card->number,
+                    "number" => $card->number
                 ]
             )->all();
             if (!empty($i)) {

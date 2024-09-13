@@ -33,7 +33,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Install Laravel dependencies
-RUN composer install 
+RUN composer install --no-dev --optimize-autoloader
 
 # Update the Apache config to serve the RSPK-HRT from the 'public' directory
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
