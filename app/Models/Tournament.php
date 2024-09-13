@@ -24,7 +24,9 @@ class Tournament extends Model
 
     public function tournamentStandings(): HasMany
     {
-        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id');
+        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id')
+        ->where('placement', '!=', -1)
+        ->orderBy('placement', 'asc');
     }
 
     public function tournamentPairings(): HasMany
@@ -33,7 +35,9 @@ class Tournament extends Model
     }
 
     public function topStandings() {
-        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id')->take(8);
+        return $this->hasMany(TournamentStanding::class, 'tournament_limitless_id', 'limitless_id')
+        ->take(8)
+        ->orderBy('placement', 'asc');;
     }
 
 }

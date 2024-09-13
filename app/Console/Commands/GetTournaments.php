@@ -86,8 +86,8 @@ class GetTournaments extends Command
                         'tournament_limitless_id'   =>  $t->limitless_id,
                         'player_username'           =>  $standing->player,
                         'player_name'               =>  $standing->name,
-                        'country'                   =>  $standing->country,
-                        'placement'                 =>  $standing->placing,
+                        'country'                   =>  $standing->country ?? 'XX', // XX is the unknown coutnry code
+                        'placement'                 =>  $standing->placing ?? '1000000', // 1000000 implies DQ from Tourney?
                         'drop'                      =>  $standing->drop
                     ]
                 );
