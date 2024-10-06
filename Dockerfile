@@ -46,8 +46,8 @@ RUN echo '<VirtualHost *:443>\n\
     DocumentRoot /var/www/html/public\n\
 \n\
     SSLEngine on\n\
-    SSLCertificateFile "/var/www/letsencrypt/certs/live/your-domain.com/fullchain.pem"\n\
-    SSLCertificateKeyFile "/var/www/letsencrypt/certs/live/your-domain.com/privkey.pem"\n\
+    SSLCertificateFile "/var/www/letsencrypt/certs/live/holonresearchtower.org/fullchain.pem"\n\
+    SSLCertificateKeyFile "/var/www/letsencrypt/certs/live/holonresearchtower.org/privkey.pem"\n\
 </VirtualHost>' >> /etc/apache2/sites-available/000-default.conf
 # RUN sed -i 's|#ServerName www.example.com|Alias /.well-known/acme-challenge /var/www/letsencrypt/data/.well-known/acme-challenge|g' /etc/apache2/sites-available/000-default.conf
 
