@@ -41,7 +41,16 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Update the Apache config to serve the RSPK-HRT from the 'public' directory
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
-RUN sed -i 's|#ServerName www.example.com|Alias /.well-known/acme-challenge /var/www/letsencrypt/data/.well-known/acme-challenge|g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's|#ServerName www.example.com|Redirect https://holonresearchtower.org|g' /etc/apache2/sites-available/000-default.conf
+RUN echo '<VirtualHost *:443>\n\
+    DocumentRoot /var/www/html/public\n\
+\n\
+    SSLEngine on\n\
+    SSLCertificateFile "/var/www/letsencrypt/certs/live/your-domain.com/fullchain.pem"\n\
+    SSLCertificateKeyFile "/var/www/letsencrypt/certs/live/your-domain.com/privkey.pem"\n\
+</VirtualHost>' >> /etc/apache2/sites-available/000-default.conf
+# RUN sed -i 's|#ServerName www.example.com|Alias /.well-known/acme-challenge /var/www/letsencrypt/data/.well-known/acme-challenge|g' /etc/apache2/sites-available/000-default.conf
+
 # Ensure that index.php is used as the default directory index file
 RUN echo "<Directory /var/www/html/public>\n\
     Options Indexes FollowSymLinks\n\

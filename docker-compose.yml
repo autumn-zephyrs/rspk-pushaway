@@ -9,8 +9,8 @@ services:
         environment:
             WWWUSER: '1000'
             LARAVEL_SAIL: 1
-        volumes:
-          - ./lets-encrypt/:/var/www/letsencrypt
+        volumes: #COMMENT THIS SEGMENT OUT AUTUMN
+          - ../letsencrypt/:/var/www/letsencrypt # and this
         networks:
             - app-network
         depends_on:
