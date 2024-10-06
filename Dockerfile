@@ -14,12 +14,16 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
+    certbot \
+    python3-certbot-apache \
     unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql gd mbstring xml exif pcntl bcmath opcache
 
 # Enable Apache mod_rewrite for Laravel
 RUN a2enmod rewrite
+RUN a2enmod ssl 
+RUN a2enmod headers
 
 # Install Composer (Dependency Manager for PHP)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -47,6 +51,7 @@ RUN echo "<Directory /var/www/html/public>\n\
 
 # Expose port 80 for the web server
 EXPOSE 80
+EXPOSE 443
 
 # Start Apache in the foreground
 CMD ["apache2-foreground"]

@@ -5,6 +5,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - '80:80'
+            - '443:443'
         environment:
             WWWUSER: '1000'
             LARAVEL_SAIL: 1
