@@ -10,6 +10,10 @@ services:
             LARAVEL_SAIL: 1
         networks:
             - app-network
+        depends_on:
+            mysql: 
+                condition: service_started
+                restart: true
 
     mysql:
         image: mysql:8.0
