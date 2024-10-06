@@ -4,7 +4,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                'sans': ['Inter var', ...defaultTheme.fontFamily.sans],
+                'title': ['HANZEEXR', 'HANZEEXR', 'sans-serif']
             },
             backgroundImage: {
                 'blastoise': "url('http://localhost/images/blast.png')",

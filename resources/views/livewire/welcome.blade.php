@@ -1,7 +1,7 @@
 <div class="p-6 mx-auto max-w-7xl lg:p-8">
     <div class="flex justify-center">
-        <div class="font-bold mt-6 text-6xl font-semibold text-gray-900 dark:text-white">
-            📡 HOLON RESEARCH TOWER 📡
+        <div class="font-bold mt-6 text-6xl font-semibold text-gray-900 dark:text-white flex items-center gap-4">
+            <img class="h-20 font-title" src="http://localhost/images/logo.png"> HOLON RESEARCH TOWER </img>
         </div>
     </div>
     <div class="mt-16">
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="ml-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-           By <a href="https://twitter.com/AutumnZephyrs_" target="_blank" class="hover:text-gray-700 dark:hover:text-white">Autumn Lamb</a>
+           By <a href="https://twitter.com/AutumnZephyrs_" target="_blank" class="hover:text-gray-700 dark:hover:text-white">Autumn Lamb</a> & <a href="https://twitter.com/MillyWasTaken" target="_blank" class="hover:text-gray-700 dark:hover:text-white">Amelia Grant</a>
         </div>
     </div>
 </div>
