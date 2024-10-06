@@ -11,7 +11,7 @@ services:
             LARAVEL_SAIL: 1
         volumes:
           - ./lets-encrypt/:/var/www/letsencrypt
-          - ./apache2/000-no-ssl-default.conf:/etc/apache2/sites-enabled/000-default.conf
+          - ./000-no-ssl-default.conf:/etc/apache2/sites-enabled/000-default.conf
         networks:
             - app-network
         depends_on:
