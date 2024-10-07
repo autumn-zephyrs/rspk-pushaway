@@ -32,7 +32,7 @@
                                                 <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$tournament->tournamentStandings->first()->deck->deckType->icon_secondary}}.png">
                                             @endif
                                         @else
-                                            <img class="max-h-6" src="http://localhost/images/substitute.png">
+                                            <img class="max-h-6" src="/images/substitute.png">
                                         @endif
                                     @endif
                                 </div>
@@ -70,7 +70,7 @@
                                                         <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
                                                     @endif
                                                 @else
-                                                    <img class="max-h-6" src="http://localhost/images/substitute.png">
+                                                    <img class="max-h-6" src="/images/substitute.png">
                                                 @endif
                                                 {{$standing->player_name}} ({{$standing->player_username}}) @if($standing->country)[{{$standing->country}}]@endif - {{$standing->deck->deckType->name}} 
                                             </a>

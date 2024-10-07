@@ -27,7 +27,7 @@
                                             <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
                                         @endif
                                     @else
-                                        <img class="max-h-8" src="http://localhost/images/substitute.png">
+                                        <img class="max-h-8" src="/images/substitute.png">
                                     @endif
                                 </div>
                                 <h2 class="text-gray-700 italic mt-1 mb-2">By {{$deck->player_name}} ({{$deck->player_username}})</h2>

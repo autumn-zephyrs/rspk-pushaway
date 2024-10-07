@@ -19,7 +19,7 @@
                                             <img class="max-h-5" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$type->icon_secondary}}.png">
                                         @endif
                                     @else
-                                        <img class="max-h-5" src="http://localhost/images/substitute.png">
+                                        <img class="max-h-5" src="/images/substitute.png">
                                     @endif
                             </div>
                         @endforeach
@@ -46,7 +46,7 @@
                                             <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
                                         @endif
                                     @else
-                                        <img class="max-h-8" src="http://localhost/images/substitute.png">
+                                        <img class="max-h-8" src="/images/substitute.png">
                                     @endif
                                 </div>
                             </div>
