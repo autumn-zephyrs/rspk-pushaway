@@ -32,30 +32,28 @@
 
             @foreach ($decks as $deck)
                 <div class="bg-gray-100 flex-none rounded-lg my-4">
-                    <div class="bg-gray-200 rounded-t-lg w-full h-8 flex items-center px-2 italic drop-shadow-sm">
-                        <h2>{{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}} - {{$deck->tournamentStanding->tournament->name}}</h2>
-                    </div>
                     <div class="px-12 py-4">
-                        <div class="flex justify-between items-top">
-                            <div class="items-center flex gap-2">
-                                <a href="/tournaments/standings/{{$deck->tournamentStanding->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
-                                <div class="flex gap-2">
-                                    @if($deck->deckType->icon_primary !== 'substitute')
-                                        <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
-                                        @if($deck->deckType->icon_secondary)
-                                            <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
+                        <div class="mb-2">
+                            <div class="flex justify-between items-top">
+                                <div class="items-center flex gap-2">
+                                    <a href="/tournaments/standings/{{$deck->tournamentStanding->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
+                                    <div class="flex gap-2">
+                                        @if($deck->deckType->icon_primary !== 'substitute')
+                                            <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
+                                            @if($deck->deckType->icon_secondary)
+                                                <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
+                                            @endif
+                                        @else
+                                            <img class="max-h-8" src="/images/substitute.png">
                                         @endif
-                                    @else
-                                        <img class="max-h-8" src="/images/substitute.png">
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <h2>Player: {{$deck->player_name}} - {{$deck->player_username}}</h2>
-                                <h2>Placement: {{$deck->tournamentStanding->placement}} / {{$deck->tournamentStanding->tournament->players}}</h2>
-                            </div>
+                            <h2 class="text-base">By {{$deck->player_name}} ({{$deck->player_username}})</h2>
+                            <h3 class="text-sm">{{$deck->tournamentStanding->placement === 1000000 ? "Dropped" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} in {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
                         </div>
-                        <div class="my-2 grid sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
+                        <hr class="">
+                        <div class="mb-2 mt-4 grid sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
                             @foreach($deck->deckCards as $deckCard)
                                 <div class="flex transition-all hover:scale-105 cursor-pointer items-end justify-center">  
                                     <img src="{{$deckCard->card->image_small}}">
@@ -66,37 +64,40 @@
                         </div>
                         <div class="grid grid-cols-3 mt-4 gap-4">
                             <div class="col-span-1">
-                                <div class="bg-gray-200 text-center font-semibold">
+                                <div class="pl-3 bg-gray-200 font-semibold text-lg rounded-t pt-2 pb-1">
                                     Pokemon
                                 </div>
-                                <div>
+                                <div class="text-sm leading pl-2">
                                     @foreach($deck->deckCards as $deckCard)
                                         @if($deckCard->card->type === 'pokemon')
-                                            <div class="text-sm leading">{{$deckCard->card->name}} <span class="text-gray-400 text-xs">({{$deckCard->card->set_code}} {{$deckCard->card->number}})</span> x {{$deckCard->count}}</div>
+                                            <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}} <span class="text-gray-400 text-xs">({{$deckCard->card->set_code}} {{$deckCard->card->number}})</span></div>
+                                            <hr>
                                         @endif
                                     @endforeach
                                 </div>
                             </div>
                             <div class="col-span-1">
-                                <div class="bg-gray-200 text-center font-semibold">
+                                <div class="pl-3 bg-gray-200 font-semibold text-lg rounded-t pt-2 pb-1">
                                     Trainers
                                 </div>
-                                <div class="text-sm leading">
+                                <div class="text-sm leading pl-2">
                                     @foreach($deck->deckCards as $deckCard)
                                         @if($deckCard->card->type === 'trainer')
-                                            <div>{{$deckCard->card->name}} x {{$deckCard->count}}</div>
+                                            <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}}</div>
+                                            <hr>
                                         @endif
                                     @endforeach
                                 </div>
                             </div>
                             <div class="col-span-1">
-                                <div class="bg-gray-200 text-center font-semibold">
+                                <div class="pl-3 bg-gray-200 font-semibold text-lg rounded-t pt-2 pb-1">
                                     Energy
                                 </div>
-                                <div class="text-sm leading">
+                                <div class="text-sm leading pl-2">
                                     @foreach($deck->deckCards as $deckCard)
                                         @if($deckCard->card->type === 'energy')
-                                            <div>{{$deckCard->card->name}} x {{$deckCard->count}}</div>
+                                            <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}}</div>
+                                            <hr>
                                         @endif
                                     @endforeach
                                 </div>
