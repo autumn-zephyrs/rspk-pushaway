@@ -65,7 +65,7 @@
                             <h2 class="col-span-3 flex items-center text-gray-800">{{$deck->player_name}} ({{$deck->player_username}})</h2>
                         </div>
                     </div>
-                    <div x-show="open == {{$deck->id}}" class="flex-none rounded-lg my-4">
+                    <div x-show="open == {{$deck->id}}" class="bg-holon-200 flex-none rounded-lg my-4">
                         <div class="px-12 py-4">
                             <div class="mb-2">
                                 <div class="flex justify-between items-top">
