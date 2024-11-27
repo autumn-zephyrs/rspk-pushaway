@@ -39,6 +39,11 @@
             <hr>
             <div>
                 @foreach ($decks as $index => $deck)
+                    @if ($index === 0 || $decks[$index]->tournamentStanding->tournament->id != $decks[$index-1]->tournamentStanding->tournament->id )
+                        <div x-show="open == false" class="bg-holon-200 py-1 px-4">
+                            <h3 class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
+                        </div>
+                    @endif
                     <div x-show="open == false" x-on:click="open = {{$deck->id}}" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} py-1 flex-none hover:text-slate-700 hover:cursor-pointer ">
                         <div class="grid grid-cols-10 px-6">
                             <div class="col-span-3 flex items-center gap-4">
@@ -58,10 +63,9 @@
                             </div>
                             <div class="col-span-1 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === 1000000 ? "Dropped" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
                             <h2 class="col-span-3 flex items-center text-gray-800">{{$deck->player_name}} ({{$deck->player_username}})</h2>
-                            <h3 class="col-span-3 text-sm flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
                         </div>
                     </div>
-                    <div x-show="open == {{$deck->id}}" class="bg-holon-100 flex-none rounded-lg my-4">
+                    <div x-show="open == {{$deck->id}}" class="flex-none rounded-lg my-4">
                         <div class="px-12 py-4">
                             <div class="mb-2">
                                 <div class="flex justify-between items-top">
@@ -93,14 +97,14 @@
                             </div>
                             <hr class="">
                             <div class="grid grid-cols-3 mt-4 gap-4">
-                                <div class="col-span-1">
+                                <div class="col-span- rounded-b">
                                     <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
                                         Pokemon
                                     </div>
-                                    <div class="text-sm leading pl-2">
-                                        @foreach($deck->deckCards as $deckCard)
+                                    <div class="text-sm leading">
+                                        @foreach($deck->deckCards as $index => $deckCard)
                                             @if($deckCard->card->type === 'pokemon')
-                                                <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}} <span class="text-gray-400 text-xs">({{$deckCard->card->set_code}} {{$deckCard->card->number}})</span></div>
+                                                <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}} <span class="text-gray-400 text-xs">({{$deckCard->card->set_code}} {{$deckCard->card->number}})</span></div>
                                                 <hr>
                                             @endif
                                         @endforeach
@@ -110,10 +114,10 @@
                                     <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
                                         Trainers
                                     </div>
-                                    <div class="text-sm leading pl-2">
-                                        @foreach($deck->deckCards as $deckCard)
+                                    <div class="text-sm leading">
+                                        @foreach($deck->deckCards as $index => $deckCard)
                                             @if($deckCard->card->type === 'trainer')
-                                                <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}}</div>
+                                                <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}}</div>
                                                 <hr>
                                             @endif
                                         @endforeach
@@ -123,10 +127,10 @@
                                     <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
                                         Energy
                                     </div>
-                                    <div class="text-sm leading pl-2">
-                                        @foreach($deck->deckCards as $deckCard)
+                                    <div class="text-sm leading ">
+                                        @foreach($deck->deckCards as $index => $deckCard)
                                             @if($deckCard->card->type === 'energy')
-                                                <div class="py-1">{{$deckCard->count}} {{$deckCard->card->name}}</div>
+                                                <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}}</div>
                                                 <hr>
                                             @endif
                                         @endforeach
