@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Deck;
 use App\Models\DeckType;
+use App\Models\Tournament;
 
 class ShowDecks extends Component
 {
@@ -35,7 +36,7 @@ class ShowDecks extends Component
     public function render()
     {
         return view('livewire.show-decks', [
-            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->simplePaginate(10),
+            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->simplePaginate(20),
             'types' => DeckType::has('decks')->orderBy('name', 'ASC')->get()
         ]);
     }
