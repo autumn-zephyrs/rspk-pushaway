@@ -82,12 +82,9 @@ class GetTournaments extends Command
                         'player_username'           =>  $standing->player,
                     ],
                     [   
-                        'player_username'           =>  $standing->player,
-                        'tournament_limitless_id'   =>  $t->limitless_id,
-                        'player_username'           =>  $standing->player,
                         'player_name'               =>  $standing->name,
                         'country'                   =>  $standing->country ?? 'XX', // XX is the unknown coutnry code
-                        'placement'                 =>  $standing->placing ?? '1000000', // 1000000 implies DQ from Tourney?
+                        'placement'                 =>  $standing->placing ?? '-1', // -1 implies DQ from Tourney?
                         'drop'                      =>  $standing->drop
                     ]
                 );
@@ -95,6 +92,7 @@ class GetTournaments extends Command
                 $d = Deck::firstOrCreate(
                     [
                         'tournament_standing_id'    =>  $s->id,
+                        'tournament_limitless_id'   =>  $t->limitless_id,
                     ],
                     [
                         'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,

@@ -36,13 +36,13 @@ class ShowDecks extends Component
     public function render()
     {
         return view('livewire.show-decks', [
-            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->simplePaginate(20),
-            'types' => DeckType::has('decks')->orderBy('name', 'ASC')->get()
+            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->paginate(20),
+            'types' => DeckType::has('decks')->withCount(['decks'])->orderBy('decks_count', 'DESC')->get()
         ]);
     }
 
-    public function paginationView()
-    {
-        return 'livewire.custom-pagination-links';
-    }
+    // public function simlpePaginationView()
+    // {
+    //     return 'livewire.custom-pagination-links';
+    // }
 }

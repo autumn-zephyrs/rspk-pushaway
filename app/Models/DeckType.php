@@ -22,4 +22,20 @@ class DeckType extends Model
         return $this->hasMany(Deck::class, 'identifier', 'identifier');
     }
 
+
+    public function getWinrateAttribute(): float
+    {
+        $wins = 0;
+        $losses = 0;
+        $ties = 0;
+        foreach($this->decks as $deck) {
+            $wins += $deck->winrate[0];
+            $losses += $deck->winrate[1];
+            $ties += $deck->winrate[2];
+        }
+
+        // $percentage = $wins / ($wins + $losses + $ties);
+        
+        return number_format(50 , 2, '.', '');
+    }
 }
