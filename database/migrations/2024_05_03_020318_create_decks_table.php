@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('decks', function (Blueprint $table) {
             $table->id();
-            $table->integer('tournament_standing_id')->nullable();
-            $table->integer('featured')->nullable();
+            $table->integer('tournament_standing_id');
+            $table->text('tournament_limitless_id');
             $table->text('player_username')->nullable();
             $table->text('player_name')->nullable();
             $table->text('identifier')->nullable();

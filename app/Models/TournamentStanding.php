@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TournamentStanding extends Model
 {
@@ -26,6 +27,11 @@ class TournamentStanding extends Model
     public function tournament(): BelongsTo
     {
         return $this->belongsTo(Tournament::class, 'tournament_limitless_id', 'limitless_id');
+    }
+
+    public function tournamentPairings(): BelongsTo
+    {
+        return $this->hasMany(TournamentPairing::class, 'player_username', 'player_username');
     }
 
     public function deck(): HasOne
