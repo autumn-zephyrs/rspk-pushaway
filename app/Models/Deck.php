@@ -23,7 +23,7 @@ class Deck extends Model
      *
      * @var array
      */
-    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'featured_id', 'identifier', 'player_username', 'player_name'];
+    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'identifier', 'player_username', 'player_name'];
 
     public function deckCards(): HasMany
     {
@@ -73,7 +73,7 @@ class Deck extends Model
         $wins = 0;
         $losses = 0;
         $ties = 0;
-        foreach ($this->tournamentPairings as $pairing) {
+        foreach ($this->pairings as $pairing) {
             if ($pairing->winner === $this->player_username || $pairing->winner == -1) {
                 $wins++;
             } else {

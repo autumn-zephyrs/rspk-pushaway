@@ -57,10 +57,10 @@
                 @foreach ($decks as $index => $deck)
                     @if ($index === 0 || $decks[$index]->tournamentStanding->tournament->id != $decks[$index-1]->tournamentStanding->tournament->id )
                         <div x-show="open == false" class="bg-holon-200 py-1 px-4">
-                            <h3 class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
+                            <a href="/tournaments/{{$decks[$index]->tournamentStanding->tournament->limitless_id}}" class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</a>
                         </div>
                     @endif
-                    <div x-show="open == false" x-on:click="open = {{$deck->id}}" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} flex-none hover:text-slate-700 hover:cursor-pointer ">
+                    <div x-show="open == false" x-on:click="open = {{$deck->id}}" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 flex-none hover:text-slate-700 hover:cursor-pointer ">
                         <div class="grid grid-cols-10 px-6">
                             <div class="col-span-5 flex items-center gap-4 border-r border-holon-400 py-1">
                                 <div class="items-center flex gap-2">
@@ -77,8 +77,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "Dropped" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
-                            <h2 class="col-span-3 flex items-center text-gray-800">{{$deck->player_name}} ({{$deck->player_username}})</h2>
+                            <div class="col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
+                            <h2 class="col-span-3 flex items-center text-gray-800">
+                                {{$deck->player_name}} ({{$deck->player_username}})
+                                
+                            </h2>
                         </div>
                     </div>
                     <div x-show="open == {{$deck->id}}" class="bg-holon-200 flex-none rounded-lg my-4">
@@ -99,8 +102,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="text-base">By {{$deck->player_name}} ({{$deck->player_username}})</h2>
-                                <h3 class="text-sm">{{$deck->tournamentStanding->placement === -1 ? "Dropped" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} in {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
+                                <h2 class="text-base flex items-center gap-2">By {{$deck->player_name}} ({{$deck->player_username}})
+                                    @if($deck->tournamentStanding->country != 'XX')
+                                    <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$deck->tournamentStanding->country}}.png"> 
+                                    @endif
+                                </h2>
+                                <h3 class="text-sm">{{$deck->tournamentStanding->placement === -1 ? "DQd" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} in {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
                             </div>
                             <hr class="">
                             <div class="mb-4 mt-4 grid sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">

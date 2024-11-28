@@ -8,7 +8,7 @@ use Livewire\Component;
 use App\Models\Deck;
 use App\Models\DeckType;
 
-class ShowFeatured extends Component
+class ShowPlayers extends Component
 {
     use WithPagination;
 
@@ -47,9 +47,8 @@ class ShowFeatured extends Component
 
     public function render()
     {
-        return view('livewire.show-featured', [
-            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->where('featured', '=', 1)->simplePaginate(10),
-            'types' => DeckType::has('decks')->orderBy('name', 'ASC')->get()
+        return view('livewire.show-players', [
+
         ]);
     }
 

@@ -12,17 +12,21 @@ class ShowTournaments extends Component
 {
     use WithPagination;
 
+
     #[Url (keep:true)]
     public $page = 1;
+
+    #[Url]
+    public $query = '';
 
     public function mount() 
     {
 
     }
 
-    public function setIdentifier($input) {
+    public function setQuery($input) {
         $this->resetPage();
-        $this->identifier = $input;
+        $this->query = $input;
     }
 
     public function next() 
@@ -45,12 +49,12 @@ class ShowTournaments extends Component
     public function render()
     {
         return view('livewire.show-tournaments', [
-            'tournaments' => Tournament::has('tournamentStandings')->orderBy('date', 'DESC')->simplePaginate(10),
+            'tournaments' => Tournament::has('tournamentStandings')->where('name', 'like', '%'.$this->query.'%')->orderBy('date', 'DESC')->paginate(20),
         ]);
     }
 
-    public function paginationView()
-    {
-        return 'livewire.custom-pagination-links';
-    }
+    // public function paginationView()
+    // {
+    //     return 'livewire.custom-pagination-links';
+    // }
 }
