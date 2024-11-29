@@ -22,7 +22,7 @@ class TournamentStanding extends Model
      *
      * @var array
      */
-    protected $fillable = ['tournament_limitless_id', 'player_username', 'player_name', 'country', 'placement', 'deck', 'drop'];
+    protected $fillable = ['tournament_limitless_id', 'player_username', 'placement', 'deck', 'drop'];
 
     public function tournament(): BelongsTo
     {
@@ -32,6 +32,11 @@ class TournamentStanding extends Model
     public function tournamentPairings(): HasMany
     {
         return $this->hasMany(TournamentPairing::class, 'player_username', 'player_username');
+    }
+
+    public function player(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'player_username', 'username');
     }
 
     public function deck(): HasOne

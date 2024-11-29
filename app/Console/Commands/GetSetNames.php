@@ -44,5 +44,6 @@ class GetSetNames extends Command
             $card->save();
         }
         $progressBar->finish();
+        echo("\r\n");
     }
 }

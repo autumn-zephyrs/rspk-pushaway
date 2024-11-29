@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('tournament_standing_id');
             $table->text('tournament_limitless_id');
-            $table->text('player_username')->nullable();
-            $table->text('player_name')->nullable();
+            $table->text('player_username');
             $table->text('identifier')->nullable();
             $table->softDeletes();
             $table->timestamps();

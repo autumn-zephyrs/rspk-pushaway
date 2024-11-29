@@ -19,9 +19,6 @@ class ShowDecks extends Component
     #[Url]
     public $identifier = '';
 
-    #[Url]
-    public $query = '';
-
     public function mount() 
     {
 
@@ -39,8 +36,13 @@ class ShowDecks extends Component
     public function render()
     {
         return view('livewire.show-decks', [
-            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->where('player_username', 'like', '%'.$this->query.'%')->paginate(20),
+            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->paginate(20),
             'types' => DeckType::has('decks')->withCount(['decks'])->orderBy('decks_count', 'DESC')->get()
         ]);
     }
+
+    // public function simlpePaginationView()
+    // {
+    //     return 'livewire.custom-pagination-links';
+    // }
 }

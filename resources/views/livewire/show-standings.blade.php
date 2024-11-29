@@ -8,16 +8,18 @@
             </div>
         </div>
 
-        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-6 px-8 bg-gray-50 rounded mb-8 pb-4">
-            <div class="items-center">
+        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 px-8 bg-gray-50 rounded mb-8 pb-4">
+            <div class="items-center flex">
                 <div  x-on:click="open = false" x-show="open != false"  class="my-4 flex pagination items-center rounded-lg px-4 py-1">
                     <a href="/tournaments" class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
                         Back
                     </a>
-                </span>
+                </div>
+                <div class="text-sm text-gray-600">
+                    {{$tournament->name}}
                 </div>
             </div>
-            <div class="bg-holon-200 flex-none rounded-lg my-4" x-data="{ page: 'standings' }">
+            <div x-data="{ page: 'standings' }" class="bg-holon-200 flex-none rounded-lg my-4">
                 <div class="px-12 py-4">
                     <div class="flex gap-2 justify-between items-top mb-4">
                         <div class="items-center gap-2">
@@ -31,9 +33,9 @@
                                 <h3 class="text-sm text-gray-600">{{$tournament->players}} Players</h3>
                             </div>
                             <div class="flex items-center gap-2">
-                                Winner: {{$tournament->winner->player_name}} ({{$tournament->winner->player_username}})
-                                @if($tournament->winner->country != 'XX')
-                                    <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$tournament->winner->country}}.png"> 
+                                Winner: {{$tournament->winner->player->name}} ({{$tournament->winner->player_username}})
+                                @if($tournament->winner->player->country != 'XX')
+                                    <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$tournament->winner->player->country}}.png"> 
                                 @endif
                             </div>
                             <div class="flex items-center gap-2">
@@ -70,14 +72,14 @@
                                         </span>
                                     </div>
                                     <div class="flex col-span-3 py-1 items-center align-right gap-2">
-                                        {{$standing->player_name}}
+                                        {{$standing->player->name}}
                                         @if($standing->drop)   
                                             <span class="text-gray-400 text-xs">Dropped</span>
                                         @endif
                                     </div>
                                     <div class="col-span-1"> 
-                                        @if($standing->country != 'XX')
-                                            <img class="h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$standing->country}}.png"> 
+                                        @if($standing->player->country != 'XX')
+                                            <img class="h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$standing->player->country}}.png"> 
                                         @endif
                                     </div>
                                     <div class="col-span-1">  
@@ -107,14 +109,14 @@
 
                                     </div>
                                     <div class="flex col-span-3 py-1 items-center align-right gap-2">
-                                        {{$standing->player_name}}
+                                        {{$standing->player->name}}
                                         @if($standing->drop)   
                                             <span class="text-gray-400 text-xs">Dropped</span>
                                         @endif
                                     </div>
                                     <div class="col-span-1">  
-                                        @if($standing->country != 'XX')
-                                            <img class="h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$standing->country}}.png"> 
+                                        @if($standing->player->country != 'XX')
+                                            <img class="h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$standing->player->country}}.png"> 
                                         @endif
                                     </div>
                                     <div class="col-span-1">  

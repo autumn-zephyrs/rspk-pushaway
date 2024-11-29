@@ -5,38 +5,33 @@ namespace App\Livewire;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Livewire\Component;
-use App\Models\Deck;
-use App\Models\DeckType;
+use App\Models\Player;
 
 class ShowPlayers extends Component
 {
     use WithPagination;
 
+
     #[Url (keep:true)]
     public $page = 1;
 
     #[Url]
-    public $identifier = '';
+    public $query = '';
 
     public function mount() 
     {
 
     }
 
-    public function setIdentifier($input) {
+    public function setQuery($input) {
         $this->resetPage();
-        $this->identifier = $input;
+        $this->query = $input;
     }
 
     public function next() 
     {
         $this->page++;
         $this->nextPage();
-    }
-
-    public function getCard()
-    {
-
     }
 
     public function previous() 
@@ -48,12 +43,8 @@ class ShowPlayers extends Component
     public function render()
     {
         return view('livewire.show-players', [
-
+            'players' => Player::where('name', 'like', '%'.$this->query.'%')->orWhere('username', 'like', '%'.$this->query.'%')->orderBy('name', 'asc')->paginate(30),
         ]);
     }
 
-    public function paginationView()
-    {
-        return 'livewire.custom-pagination-links';
-    }
 }

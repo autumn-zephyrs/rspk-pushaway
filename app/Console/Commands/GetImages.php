@@ -62,5 +62,6 @@ class GetImages extends Command
             $progressBar->advance();
         }
         $progressBar->finish();
+        echo("\r\n");
     }
 }

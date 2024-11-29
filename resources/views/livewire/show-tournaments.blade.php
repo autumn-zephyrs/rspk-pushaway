@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-6 px-8 bg-gray-50 rounded mb-8 pb-4">
+        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 px-8 bg-gray-50 rounded mb-8 pb-4">
             <div class="items-center">
                 <div class="text-xl font-bold">Latest Tournaments</div>
                 <div class="pagination items-center mb-4">
@@ -32,8 +32,15 @@
                     <div class="col-span-1 flex items-center gap-4">{{date("d M y", strtotime($tournament->date))}}</div>
                     <div class="col-span-5 ml-2 border-r border-holon-400 py-1">{{$tournament->name}}</div>
                     <div class="col-span-1 ml-2">{{$tournament->players}}</div>
-                    <div class="col-span-3 ml-2f flex items-center justify-between">
-                        <div>{{$tournament->winner->player_name}}</div>
+                    <div class="col-span-1 ml-2">
+                        @if($tournament->winner->player->country != 'XX')
+                            <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$tournament->winner->player->country}}.png"> 
+                        @endif
+                    </div>
+                    <div class="col-span-2 ml-f flex items-center justify-between">
+                        <div class="flex items-center justify-between">
+                            {{$tournament->winner->player->name}}
+                        </div>
                         <div class="flex gap-2">
                             @if($tournament->winner->deck->deckType)
                                 @if($tournament->winner->deck->deckType->icon_primary !== 'substitute')
