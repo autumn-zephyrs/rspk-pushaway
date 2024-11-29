@@ -3,91 +3,60 @@
     <div class="grid grid-cols-12">
 
         <div class="col-start-1 col-end-3">
-            <div class="w-2/12 fixed  h-screen bg-gray-700">
-                <div class="bg-gray-700 my-4 flex pagination items-center rounded-lg px-4 py-1">
-                    {{$tournaments->links()}}
+            <div class="w-2/12 fixed h-screen bg-holon-200">
+                <div class="py-1 px-2">
+                    <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Search Tournaments</h3>
+                </div>
+                <div class="flex justify-center mx-2">
+                    <input type="text" wire:model.live="query" class="h-8 w-11/12 shadow-inner rounded border-holon-400" placeholder="Stambler...">
                 </div>
             </div>
         </div>
 
-        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-6 px-4">
-
-            @foreach ($tournaments as $tournament)
-                <div class="bg-gray-100 flex-none rounded-lg my-4">
-                    <div class="bg-gray-200 rounded-t-lg w-full h-8 flex items-center px-2 italic drop-shadow-sm">
-                    </div>
-                    <div class="px-12 py-4">
-                        <div class="flex gap-2 justify-between items-top">
-                            <div class="items-center gap-2 w-1/4">
-                                <a href="/tournaments/{{$tournament->limitless_id}}" class="hover:text-slate-700 text-2xl font-bold mb-2">{{$tournament->name}}</a>
-                                <h2 class="text-gray-700 italic mt-1 mb-2">{{date("dS M Y", strtotime($tournament->date))}}</h2>
-                                <h2>Players: {{$tournament->players}}</h2>
-                                <div class="flex items-center gap-2">
-                                    Winner: {{$tournament->tournamentStandings->first()->player_name}} ({{$tournament->tournamentStandings->first()->player_username}}) - 
-                                    @if($tournament->tournamentStandings->first()->deck->deckType)
-                                        {{$tournament->tournamentStandings->first()->deck->deckType->name}}
-                                        @if($tournament->tournamentStandings->first()->deck->deckType->icon_primary !== 'substitute')
-                                            <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$tournament->tournamentStandings->first()->deck->deckType->icon_primary}}.png">
-                                            @if($tournament->tournamentStandings->first()->deck->deckType->icon_secondary)
-                                                <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$tournament->tournamentStandings->first()->deck->deckType->icon_secondary}}.png">
-                                            @endif
-                                        @else
-                                            <img class="max-h-6" src="/images/substitute.png">
-                                        @endif
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="w-3/5">
-                                <div class="pl-2 py-1 text-gray-900 text-left font-semibold">
-                                    Top Standings
-                                </div>
-
-                                @foreach ($tournament->topStandings as $index => $standing)
-                                    @if(!is_null($standing->deck->deckType))
-                                        <div class="text-right text-gray-800">
-                                            <a href="/tournaments/standings/{{$standing->id}}" class="{{($index % 2 == 0) ? 'bg-gray-200' : 'bg-gray-100'}} transition-all hover:scale-105 rounded pl-2 hover:text-slate-600 flex py-1 items-center align-right gap-2">
-                                                <div class="text-gray-900 font-semibold text-sm">
-                                                    @switch($index+1)
-                                                        @case(1)
-                                                            1st
-                                                            @break
-
-                                                        @case(2)
-                                                            2nd
-                                                            @break
-
-                                                        @case(3)
-                                                            3rd
-                                                            @break
-
-                                                        @default
-                                                            {{$index+1 . 'th'}}
-                                                    @endswitch
-                                                </div>
-                                                @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                                    <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                                    @if($standing->deck->deckType->icon_secondary)
-                                                        <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
-                                                    @endif
-                                                @else
-                                                    <img class="max-h-6" src="/images/substitute.png">
-                                                @endif
-                                                {{$standing->player_name}} ({{$standing->player_username}}) @if($standing->country)[{{$standing->country}}]@endif - {{$standing->deck->deckType->name}} 
-                                            </a>
-                                        </div>
-                                    @endif
-                                @endforeach
-                                
-                                <a href="/tournaments/{{$tournament->limitless_id}}" class="text-right text-gray-900 hover:text-slate-600">
-                                    @if($tournament->players > 8)
-                                        {{$tournament->tournamentStandings->count() - 8}} more...
-                                    @endif
-                                </a>
-                            </div>
-                        </div>
-                        
-                    </div>
+        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 px-8 bg-gray-50 rounded mb-8 pb-4">
+            <div class="items-center">
+                <div class="text-xl font-bold">Latest Tournaments</div>
+                <div class="pagination items-center mb-4">
+                    {{$tournaments->links()}}
                 </div>
+            </div>
+            <div class="grid grid-cols-10 px-6 flex items-center">
+                <div class="col-span-1 flex items-center gap-4 py-1">Date</div>
+                <div class="col-span-5 ml-2">Name</div>
+                <div class="col-span-1 ml-2">Players</div>
+                <div class="col-span-3 ml-2f flex items-center justify-between">Winner</div>
+            </div>
+            <hr>
+            @foreach ($tournaments as $index=>$tournament)
+                <a href="/tournaments/{{$tournament->limitless_id}}" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-10 px-6 flex items-center">
+                    <div class="col-span-1 flex items-center gap-4">{{date("d M y", strtotime($tournament->date))}}</div>
+                    <div class="col-span-5 ml-2 border-r border-holon-400 py-1">{{$tournament->name}}</div>
+                    <div class="col-span-1 ml-2">{{$tournament->players}}</div>
+                    <div class="col-span-1 ml-2">
+                        @if($tournament->winner->player->country != 'XX')
+                            <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$tournament->winner->player->country}}.png"> 
+                        @endif
+                    </div>
+                    <div class="col-span-2 ml-f flex items-center justify-between">
+                        <div class="flex items-center justify-between">
+                            {{$tournament->winner->player->name}}
+                        </div>
+                        <div class="flex gap-2">
+                            @if($tournament->winner->deck->deckType)
+                                @if($tournament->winner->deck->deckType->icon_primary !== 'substitute')
+                                    <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$tournament->winner->deck->deckType->icon_primary}}.png">
+                                    @if($tournament->winner->deck->deckType->icon_secondary)
+                                        <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$tournament->winner->deck->deckType->icon_secondary}}.png">
+                                    @endif
+                                @else
+                                    <img class="max-h-6" src="/images/substitute.png">
+                                @endif
+                            @else
+                                <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/unown.png">
+                            @endif
+                        </div>
+                    </div>
+                </a>
             @endforeach
         </div>
     </div>

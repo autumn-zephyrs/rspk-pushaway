@@ -84,6 +84,6 @@ class getDeckTypes extends Command
             ]   
         );
         $progressBar->finish();
-        info('Import finished! \n');
+        echo("\r\n");
     }
 }

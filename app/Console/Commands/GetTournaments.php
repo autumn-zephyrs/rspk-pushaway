@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use App\Models\Tournament;
 use App\Models\TournamentStanding;
 use App\Models\TournamentPairing;
+use App\Models\Player;
 use App\Models\Deck;
 use App\Models\DeckCard;
 use App\Models\Card;
@@ -51,7 +52,6 @@ class GetTournaments extends Command
         $tournaments = json_decode($response->getBody()->getContents());
 
         $progressBar = $this->output->createProgressBar(count($tournaments));
-        $output = new ConsoleOutput();
         $progressBar->setMessage('Importing decks and tournament data...');
         $progressBar->start();
 
@@ -82,12 +82,22 @@ class GetTournaments extends Command
                         'player_username'           =>  $standing->player,
                     ],
                     [   
-                        'player_name'               =>  $standing->name,
-                        'country'                   =>  $standing->country ?? 'XX', // XX is the unknown coutnry code
                         'placement'                 =>  $standing->placing ?? '-1', // -1 implies DQ from Tourney?
                         'drop'                      =>  $standing->drop
                     ]
                 );
+
+                if ($standing->player) {
+                    $p = Player::firstOrCreate(
+                        [
+                            'username' => $standing->player,
+                        ],
+                        [
+                            'name' => $standing->name,
+                            'country' => $standing->country ?? 'XX', // XX is the unknown coutnry code
+                        ],
+                    );          
+                }
 
                 $d = Deck::firstOrCreate(
                     [
@@ -97,7 +107,6 @@ class GetTournaments extends Command
                     [
                         'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                         'player_username'           =>  $standing->player,
-                        'player_name'               =>  $standing->name,
                     ]
                 );
                 
@@ -255,5 +264,6 @@ class GetTournaments extends Command
             $progressBar->advance();
         }
         $progressBar->finish();
+        echo("\r\n");
     }
 }

@@ -23,7 +23,7 @@ class Deck extends Model
      *
      * @var array
      */
-    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'featured_id', 'identifier', 'player_username', 'player_name'];
+    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'identifier', 'player_username'];
 
     public function deckCards(): HasMany
     {
@@ -35,6 +35,11 @@ class Deck extends Model
         return $this->belongsTo(TournamentStanding::class);
     }
 
+    public function player(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'player_username', 'username');
+    }
+
     public function tournament(): BelongsTo
     {
         return $this->BelongsTo(Tournament::class, 'tournament_limitless_id', 'limitless_id');
@@ -44,7 +49,6 @@ class Deck extends Model
     {
         return $this->HasMany(TournamentPairing::class, 'tournament_limitless_id', 'tournament_limitless_id')->where('player_1', $this->player_username);
     }
-
 
     public function deckType(): BelongsTo
     {
@@ -73,7 +77,7 @@ class Deck extends Model
         $wins = 0;
         $losses = 0;
         $ties = 0;
-        foreach ($this->tournamentPairings as $pairing) {
+        foreach ($this->pairings as $pairing) {
             if ($pairing->winner === $this->player_username || $pairing->winner == -1) {
                 $wins++;
             } else {

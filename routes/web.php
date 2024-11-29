@@ -10,7 +10,8 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
 use App\Livewire\Welcome;
 use App\Livewire\ShowDecks;
-use App\Livewire\ShowFeatured;
+use App\Livewire\ShowDeck;
+use App\Livewire\ShowPlayers;
 use App\Livewire\ShowArticles;
 use App\Livewire\ShowTournaments;
 use App\Livewire\ShowStandings;
@@ -39,7 +40,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::get('decks', ShowDecks::class)->name('decks');
-Route::get('featured', ShowFeatured::class)->name('featured');
+Route::get('decks/{id}', ShowDeck::class)->name('deck');
+Route::get('players', ShowPlayers::class)->name('players');
 Route::get('tournaments', ShowTournaments::class)->name('tournaments');
 Route::get('articles', ShowArticles::class)->name('articles');
 Route::get('tournaments/{limitless_id}', ShowStandings::class)->name('standings');
