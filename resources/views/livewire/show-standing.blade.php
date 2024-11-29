@@ -23,7 +23,7 @@
                 <div class="px-12 py-4">
                     <div class="flex gap-2 justify-between items-top mb-4">
                         <div class="items-center gap-2">
-                            <div class="text-2xl font-bold mb-2">{{$standing->player->name}} ({{$standing->player_username}})</div>
+                            <a href="/players/{{$standing->player->id}}" class="hover:text-slate-700 text-2xl font-bold mb-2">{{$standing->player->name}} ({{$standing->player_username}})</a>
                             <div class="items-center flex gap-2">
                                 <a href="/decks?identifier={{$standing->deck->identifier}}" class="hover:text-slate-700  text-lg font-semibold">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
