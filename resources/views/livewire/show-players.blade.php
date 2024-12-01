@@ -27,7 +27,7 @@
             </div>
             <hr>
             @foreach ($players as $index=>$player)
-                <a href="" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-9 px-6 flex items-center">
+                <a href="/players/{{$player->id}}" class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-9 px-6 flex items-center">
                     <div class="col-span-1 ml-2">
                         @if($player->country != 'XX')
                             <img class="h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$player->country}}.png"> 

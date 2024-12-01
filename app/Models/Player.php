@@ -23,9 +23,14 @@ class Player extends Model
         return $this->hasMany(Deck::class, 'player_username', 'username');
     }
 
-    public function tournamentStanding(): HasMany
+    public function tournamentStandings(): HasMany
     {
         return $this->hasMany(TournamentStanding::class, 'player_username', 'username');
+    }
+
+    public function bestFinishes(): HasMany
+    {
+        return $this->hasMany(TournamentStanding::class, 'player_username', 'username')->orderBy('placement','asc');
     }
 
 
