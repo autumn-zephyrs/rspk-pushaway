@@ -40,14 +40,25 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 });
 
-Route::get('decks', ShowDecks::class)->name('decks');
-Route::get('decks/{id}', ShowDeck::class)->name('deck');
-Route::get('players', ShowPlayers::class)->name('players');
-Route::get('players/{id}', ShowPlayer::class)->name('player');
-Route::get('tournaments', ShowTournaments::class)->name('tournaments');
-Route::get('articles', ShowArticles::class)->name('articles');
-Route::get('tournaments/{limitless_id}', ShowStandings::class)->name('standings');
-Route::get('tournaments/standings/{id}', ShowStanding::class)->name('standing');
+Route::get('decks', ShowDecks::class)
+    ->name('decks');
+Route::get('decks/{id}', ShowDeck::class)
+    ->name('deck');
+
+Route::get('players', ShowPlayers::class)
+    ->name('players');
+Route::get('players/{id}', ShowPlayer::class)
+    ->name('player');
+    
+Route::get('articles', ShowArticles::class)
+    ->name('articles');
+    
+Route::get('tournaments', ShowTournaments::class)
+    ->name('tournaments');
+Route::get('tournaments/{limitless_id}', ShowStandings::class)
+    ->name('standings');
+Route::get('tournaments/standings/{id}', ShowStanding::class)
+    ->name('standing');
 
 Route::get('password/reset', Email::class)
     ->name('password.request');
