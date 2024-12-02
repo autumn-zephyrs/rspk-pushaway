@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? config('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Favicon -->
 		<!-- <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}"> -->
@@ -13,13 +13,9 @@
         @livewireStyles
         @livewireScripts
         <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@2.x.x/dist/alpine-clipboard.js" defer></script>
-        
+
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <style>
-
-        </style>
     </head>
     <body class="min-h-screen flex flex-col">
 
