@@ -1,10 +1,13 @@
 <div class="p-6 mx-auto max-w-7xl lg:p-8">
     <div class="flex justify-center">
-        <div class="font-bold mt-6 text-6xl font-bold text-holon-900 flex items-center gap-4">
-            <img class="h-20 font-title " src="/images/logo.png"> HOLON RESEARCH TOWER </img>
+        <div class="font-bold lg:mt-6 lg:text-6xl text-lg text-holon-900 flex items-center gap-4 justify-end grid grid-cols-5">
+            <img class="col-span-2 lg:h-20 h-16 mx-auto" src="/images/logo.png"></img>
+            <div class="col-span-3 mx-auto justify-end">
+                HOLON RESEARCH TOWER 
+            </div>
         </div>
     </div>
-    <div class="mt-16">
+    <div class="mt-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
             <a href="/decks" class="scale-100 bg-tyranitar bg-cover via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
                 <div class="rounded-lg w-full grid grid-rows-3">
@@ -15,7 +18,7 @@
                             Latest Decks
                         </h2>
 
-                        <p class="mt-4 text-sm leading-relaxed text-holon-500">
+                        <p class="hidden lg:flex mt-4 text-sm leading-relaxed text-holon-500">
                             Check out the latest decklists from EX Block tournaments on Limitless.
                         </p>
                     </div>
@@ -31,7 +34,7 @@
                             Players
                         </h2>
 
-                        <p class="mt-4 text-sm leading-relaxed text-holon-500">
+                        <p class="hidden lg:flex mt-4 text-sm leading-relaxed text-holon-500">
                             Take a look at player standings.
                         </p>
                     </div>
@@ -47,7 +50,7 @@
                             Latest Tournaments
                         </h2>
 
-                        <p class="mt-4 text-sm leading-relaxed text-holon-500">
+                        <p class="hidden lg:flex mt-4 text-sm leading-relaxed text-holon-500">
                             View the latest tournament results and matchup data from Limitless.
                         </p>
                     </div>
@@ -61,9 +64,12 @@
                         <h2 class="text-xl items-center gap-2 flex font-semibold text-holon-100">
                             <svg  class="text-slate-100 fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"/></svg>
                             Articles
+                            <p class="lg:hidden flex text-sm leading-relaxed text-holon-500">
+                                (Coming soon!)
+                            </p>
                         </h2>
 
-                        <p class="mt-4 text-sm leading-relaxed text-holon-500">
+                        <p class="hidden lg:flex mt-4 text-sm leading-relaxed text-holon-500">
                             Coming soon!
                         </p>
                     </div>
@@ -72,10 +78,10 @@
             </a>
         </div>
     </div>
-    <div class="flex justify-center px-0 mt-8 sm:items-center sm:justify-between">
-        <div class="text-sm text-center text-holon-500 sm:text-left">
+    <div class="lg:flex hidden justify-center px-0 mt-8 sm:items-center sm:justify-between">
+        <div class="text-sm text-center text-gray-800 sm:text-left">
             <div class="flex items-center gap-4">
-                <a href="https://ko-fi.com/autumnzephyrs" target="_blank" class="inline-flex items-center group hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">
+                <a href="https://ko-fi.com/autumnzephyrs" target="_blank" class="inline-flex items-center group hover:text-slate-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-5 h-5 mr-1 -mt-px stroke-gray-400 group-hover:stroke-gray-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                     </svg>
@@ -83,8 +89,8 @@
                 </a>
             </div>
         </div>
-        <div class="ml-4 text-sm text-center text-holon-500 sm:text-right sm:ml-0">
-           By <a href="https://twitter.com/AutumnZephyrs_" target="_blank" class="hover:text-gray-700 ">Autumn Lamb</a> & <a href="https://twitter.com/MillyWasTaken" target="_blank" class="hover:text-gray-700">Amelia Grant</a>
+        <div class="ml-4 text-sm text-center text-gray-800 sm:text-right sm:ml-0">
+           By <a href="https://twitter.com/AutumnZephyrs_" target="_blank" class="hover:text-slate-500 ">Autumn Lamb</a> & <a href="https://twitter.com/MillyWasTaken" target="_blank" class="hover:text-slate-500">Amelia Grant</a>
         </div>
     </div>
 </div>

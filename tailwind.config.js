@@ -12,7 +12,7 @@ module.exports = {
                 'tyranitar': "url('/images/ttar.png')",
                 'raichu': "url('/images/raichu.png')",
                 'reporter': "url('/images/tv.png')",
-                'holon': "url('/images/hrt.jpg')",
+                'hrt': "url('/images/hrt.jpg')",
             },
             "colors": {
                 "holon": {

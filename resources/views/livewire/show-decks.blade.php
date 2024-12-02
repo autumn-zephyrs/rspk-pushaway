@@ -1,10 +1,8 @@
 
 <div class="w-screen">
-    <div class="grid grid-cols-12">
-
-        <div class="col-start-1 col-end-3">
+    <div class="lg:grid lg:grid-cols-12">
+        <div class="hidden lg:flex col-start-1 col-end-3">
             <div class="w-2/12 fixed h-screen bg-holon-200">
-    
                 <div class="py-1 px-2">
                     <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Deck Archetypes</h3>
                 </div>
@@ -30,7 +28,7 @@
                                         <img class="max-h-6" src="/images/substitute.png">
                                     @endif
                                 </div>
-                            </div>
+                        </div>
                             
                         </div>
                         @endforeach
@@ -46,9 +44,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 px-8 bg-gray-50 rounded mb-8 pb-4">
-            <div class="items-center">
-                <div class="text-xl font-bold">Latest Decks</div>
+        <div class="lg:col-start-4 lg:col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 bg-gray-50 rounded mb-8 pb-4 z-1">
+            <div class="items-center lg:px-0 px-4">
+                <div class="text-xl font-bold lg:mb-0 mb-4">Latest Decks</div>
+                <form class="lg:hidden flex mb-2">
+                    <select name="identifier" id="identifier" wire:model="identifier">
+                        <option wire:click="setIdentifier(null)" value="">All decks</option>
+                        @foreach ($types as $type)
+                            <option wire:click="setIdentifier('{{$type->identifier}}')" value="{{$type->identifier}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                </form>
                 <div class="pagination items-center mb-4">
                     {{$decks->withQueryString()->links()}}
                 </div>
@@ -63,25 +69,26 @@
                     @endif
                     <div class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 flex-none hover:text-slate-700 hover:cursor-pointer ">
                         <a href="/decks/{{$deck->id}}" class="grid grid-cols-10 px-6">
-                            <div class="col-span-5 flex items-center gap-4 border-r border-holon-400 py-1">
-                                <div class="items-center flex gap-2">
-                                    <div class="text-base">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</div>
-                                    <div class="flex gap-2">
-                                        @if($deck->deckType->icon_primary !== 'substitute')
-                                            <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
-                                            @if($deck->deckType->icon_secondary)
-                                                <img class="max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
-                                            @endif
-                                        @else
-                                            <img class="max-h-6" src="/images/substitute.png">
+                            <div class="col-span-5 flex items-center gap-2 border-r border-holon-400 lg:py-1 py-2 justify-between">
+                                <div class="text-sm lg:text-base">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</div>
+                                <div class="flex gap-2 pr-4">
+                                    @if($deck->deckType->icon_primary !== 'substitute')
+                                        <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
+                                        @if($deck->deckType->icon_secondary)
+                                            <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
                                         @endif
-                                    </div>
+                                    @else
+                                        <img class="max-h-4 lg:max-h-6" src="/images/substitute.png">
+                                    @endif
                                 </div>
                             </div>
-                            <div class="col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
-                            <h2 class="col-span-3 flex items-center text-gray-800">
+                            <div class="lg:flex hidden text-base col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
+                            <div class="lg:hidden flex text-xs col-span-1 ml-1 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement}} </div>
+                            <h2 class="hidden lg:flex col-span-3 flex items-center text-gray-800">
                                 {{$deck->player->name}} ({{$deck->player_username}})
-                                
+                            </h2>
+                            <h2 class="text-sm lg:hidden flex col-span-3 pl-2 flex items-center text-gray-800">
+                                {{$deck->player->name}}
                             </h2>
                         </a>
                     </div>
