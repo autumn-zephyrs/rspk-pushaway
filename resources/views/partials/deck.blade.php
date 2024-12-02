@@ -1,5 +1,5 @@
 
-<div class="mb-4 mt-4 grid sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
+<div class="mb-4 mt-4 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
     @foreach($deck->deckCards as $deckCard)
         <div class="flex transition-all hover:scale-105 cursor-pointer items-end justify-center">  
             <img src="{{$deckCard->card->image_small}}">
@@ -8,8 +8,8 @@
     @endforeach   
 </div>
 <hr class="">
-<div class="grid grid-cols-3 mt-4 gap-4">
-    <div class="col-span- rounded-b">
+<div class="lg:grid grid-cols-3 mt-4 gap-4">
+    <div class="col-span- rounded-b mb-2 lg:mb-0">
         <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
             Pokemon
         </div>
@@ -22,7 +22,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-span-1">
+    <div class="col-span-1 mb-2 lg:mb-0">
         <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
             Trainers
         </div>
@@ -35,7 +35,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-span-1">
+    <div class="col-span-1 ">
         <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
             Energy
         </div>

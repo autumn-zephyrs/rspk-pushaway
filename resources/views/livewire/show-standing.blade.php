@@ -1,16 +1,15 @@
 
 <div class="w-screen">
-    <div class="grid grid-cols-12">
-
-        <div class="col-start-1 col-end-3">
+    <div class="lg:grid lg:grid-cols-12">
+        <div class="hidden lg:flex col-start-1 col-end-3">
             <div class="w-2/12 fixed h-screen bg-holon-200">
 
             </div>
         </div>
 
-        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 px-8 bg-gray-50 rounded mb-8 pb-4">
+        <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 px-4 bg-gray-50 rounded mb-8 pb-4">
             <div class="items-center flex">
-                <div  x-on:click="open = false" x-show="open != false"  class="my-4 flex pagination items-center rounded-lg px-4 py-1">
+                <div  x-on:click="open = false" x-show="open != false"  class="my-4 flex pagination items-center rounded-lg lg:px-4 px-2 py-1">
                     <a href="/tournaments/{{$standing->tournament->limitless_id}}" class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
                         Back
                     </a>
@@ -20,7 +19,7 @@
                 </div>
             </div>
             <div x-data="{ page: 'pairings' }" class="bg-holon-200 flex-none rounded-lg my-4">
-                <div class="px-12 py-4">
+                <div class="lg:px-12 px-4 py-4">
                     <div class="flex gap-2 justify-between items-top mb-4">
                         <div class="items-center gap-2">
                             <a href="/players/{{$standing->player->id}}" class="hover:text-slate-700 text-2xl font-bold mb-2">{{$standing->player->name}} ({{$standing->player_username}})</a>
