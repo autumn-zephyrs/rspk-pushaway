@@ -7,15 +7,13 @@
         <title>{{ $title ?? config('app.name') }}</title>
 
         <!-- Favicon -->
-		<link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		<!-- <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}"> -->
 
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         @livewireStyles
         @livewireScripts
         <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@2.x.x/dist/alpine-clipboard.js" defer></script>
+        
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
