@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,7 +13,6 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         @livewireStyles
         @livewireScripts
-        <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@2.x.x/dist/alpine-clipboard.js" defer></script>
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
