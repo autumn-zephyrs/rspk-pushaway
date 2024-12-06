@@ -12,7 +12,7 @@
                     <hr>
                     <div class="divide-y overflow-scroll-y divide-holon-200">
                         @foreach($types as $index => $type)
-                        <div wire:click="setIdentifier('{{$type->identifier}}')" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
+                        <div wire:click="setIdentifier('{{$type->identifier}}')" wire:change="setIdentifier('{{$type->identifier}}')" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
                             <div  class="justify-between flex items-center gap-1">
                                 <div class="">
                                     <div class="text-sm">{{$type->name}}</div>
