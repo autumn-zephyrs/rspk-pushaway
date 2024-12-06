@@ -1,9 +1,12 @@
 
-<div class="mb-4 mt-4 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
+<div x-data="{ card: 'none' }" class="mb-4 mt-4 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-2 bg-black/80 rounded shadow-inner p-4">
     @foreach($deck->deckCards as $deckCard)
         <div class="flex transition-all hover:scale-105 cursor-pointer items-end justify-center">  
-            <img src="{{$deckCard->card->image_small}}">
+            <img x-on:click="card = {{$deckCard->card->id}}" src="{{$deckCard->card->image_small}}">
             <div class="absolute bg-black/50 w-6 h-6 rounded-xl mx-auto text-gray-200 font-bold text-center">{{$deckCard->count}}</div>                      
+        </div>
+        <div x-show="card == {{$deckCard->card->id}}" class="fixed z-20 transition-opacity w-screen h-screen left-0 top-0 flex items-center bg-black/50" >
+            <img x-on:click.outside="card = 'none'" x-on:click="card = {{$deckCard->card->id}}" src="{{$deckCard->card->image_large}}" class="h-2/3 mx-auto">
         </div>
     @endforeach   
 </div>
