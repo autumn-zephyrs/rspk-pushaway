@@ -5,7 +5,7 @@
             <img x-on:click="card = {{$deckCard->card->id}}" src="{{$deckCard->card->image_small}}">
             <div class="absolute bg-black/50 w-6 h-6 rounded-xl mx-auto text-gray-200 font-bold text-center">{{$deckCard->count}}</div>                      
         </div>
-        <div x-show="card == {{$deckCard->card->id}}" class="fixed z-20 transition-opacity w-screen h-screen left-0 top-0 flex items-center bg-black/50" >
+        <div x-show="card == {{$deckCard->card->id}}" class="fixed z-20 transition-all w-screen h-screen left-0 top-0 flex items-center bg-black/50 ease-in-out delay-150" >
             <img x-on:click.outside="card = 'none'" x-on:click="card = {{$deckCard->card->id}}" src="{{$deckCard->card->image_large}}" class="h-2/3 mx-auto">
         </div>
     @endforeach   

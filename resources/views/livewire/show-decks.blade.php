@@ -48,7 +48,7 @@
             <div class="items-center lg:px-0 px-4">
                 <div class="text-xl font-bold lg:mb-0 mb-4">Latest Decks</div>
                 <form class="lg:hidden flex mb-2">
-                    <select name="identifier" id="identifier" wire:model="identifier">
+                    <select onchange="submit();" name="identifier" id="identifier" wire:model="identifier">
                         <option wire:click="setIdentifier(null)" value="">All decks</option>
                         @foreach ($types as $type)
                             <option wire:click="setIdentifier('{{$type->identifier}}')" value="{{$type->identifier}}">{{$type->name}}</option>
@@ -61,6 +61,16 @@
             </div>
             <hr>
             <div>
+                <div>
+                    <div class="px-2 grid grid-cols-10 flex items-center gap-2 border-r border-holon-400 lg:py-1 py-2 justify-between">
+                        <div class="col-span-5 text-xs lg:text-sm text-gray-600">Archetype</div>
+                        <div class="lg:flex hidden col-span-1 text-xs lg:text-sm flex items-center text-gray-600">Standing </div>
+                        <div class="lg:hidden flex col-span-1 text-xs lg:text-sm flex items-center text-gray-600">Pos </div>
+                        <h2 class="text-xs lg:text-sm col-span-1 flex items-center text-gray-600">
+                            Player
+                        </h2>
+                    </div>
+                </div>
                 @foreach ($decks as $index => $deck)
                     @if ($index === 0 || $decks[$index]->tournamentStanding->tournament->id != $decks[$index-1]->tournamentStanding->tournament->id )
                         <div class="bg-holon-300 py-1 px-4">
