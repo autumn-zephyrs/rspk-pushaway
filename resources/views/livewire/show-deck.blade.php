@@ -64,11 +64,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="text-base flex items-center gap-2">By {{$deck->player->name}} ({{$deck->player_username}})
+                        <a href="/players/{{$deck->player->id}}" class="text-base flex items-center gap-2">By {{$deck->player->name}} ({{$deck->player_username}})
                             @if($deck->tournamentStanding->player->country != 'XX')
                             <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$deck->tournamentStanding->player->country}}.png"> 
                             @endif
-                        </h2>
+</a>
                         <h3 class="text-sm">{{$deck->tournamentStanding->placement === -1 ? "DQd" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} in {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
                     </div>
                     <hr class="">

@@ -76,7 +76,7 @@
                                     </div>
                                 </a>
 
-                                <a href="/tournaments/standings/{{$standing->id}}" class="{{($index % 2 === 0) ? 'bg-holon-100' : 'bg-gray-50'}} flex grid grid-cols-12 py-1 flex items-center hover:text-slate-600 text-gray-800">
+                                <a href="/tournaments/standings/{{$standing->id}}" class="{{($index % 2 === 0) ? 'bg-holon-100' : 'bg-gray-50'}} lg:hidden grid grid-cols-12 py-1 flex items-center hover:text-slate-600 text-gray-800">
                                     <div class="text-xs flex col-span-4 py-1 items-center align-right gap-2 pl-2">
                                         {{$standing->tournament->name}}
                                     </div>
