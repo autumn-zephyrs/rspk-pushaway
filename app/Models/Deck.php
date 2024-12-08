@@ -45,9 +45,19 @@ class Deck extends Model
         return $this->BelongsTo(Tournament::class, 'tournament_limitless_id', 'limitless_id');
     }
 
-    public function tournamentPairings(): HasMany 
+    public function playerOnePairings(): HasMany 
     {
         return $this->HasMany(TournamentPairing::class, 'tournament_limitless_id', 'tournament_limitless_id')->where('player_1', $this->player_username);
+    }
+
+    public function playerTwoPairings(): HasMany 
+    {
+        return $this->HasMany(TournamentPairing::class, 'tournament_limitless_id', 'tournament_limitless_id')->where('player_2', $this->player_username);
+    }
+
+    public function getPairingsAttribute()
+    {
+        return $this->playerOnePairings->merge($this->playerTwoPairings);
     }
 
     public function deckType(): BelongsTo
@@ -65,13 +75,6 @@ class Deck extends Model
         return $s;
     }
 
-    public function getPairingsAttribute() {
-        $player_1 = TournamentPairing::where('tournament_limitless_id',  $this->tournament_limitless_id)->where('player_1', $this->player_username)->get();
-        $player_2 = TournamentPairing::where('tournament_limitless_id',  $this->tournament_limitless_id)->where('player_2', $this->player_username)->get();
-        $result = $player_1->merge($player_2);
-
-        return $result;
-    }
 
     public function getWinrateAttribute() {
         $wins = 0;
@@ -84,7 +87,14 @@ class Deck extends Model
                 $losses++;
             }
         }
-        return [$wins, $losses, $ties];
-    }
 
+        $percentage = $wins === 0 ? 0 : $wins / ($wins + $losses + $ties);
+
+        return (object) [
+            'wins' => $wins, 
+            'losses' => $losses, 
+            'ties' => $ties, 
+            'percentage' => round($percentage* 100, 2) . '%'
+        ];
+    }
 }

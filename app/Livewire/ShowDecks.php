@@ -13,14 +13,22 @@ class ShowDecks extends Component
 {
     use WithPagination;
 
-    #[Url (keep:true)]
-    public $page = 1;
+    protected $listeners = ['search'];
+
 
     #[Url]
+    public $page = 1;
+
+    #[Url (keep:true)]
     public $identifier = '';
 
     #[Url]
     public $query = '';
+
+    public function search()
+    {
+        $this->resetPage();
+    }
 
     public function mount() 
     {
@@ -30,10 +38,6 @@ class ShowDecks extends Component
     public function setIdentifier($input) {
         $this->resetPage();
         $this->identifier = $input;
-    }
-
-    public function copyDeck() {
-
     }
 
     public function render()

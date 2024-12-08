@@ -11,6 +11,8 @@ use App\Livewire\Auth\Verify;
 use App\Livewire\Welcome;
 use App\Livewire\ShowDecks;
 use App\Livewire\ShowDeck;
+use App\Livewire\ShowArchetypes;
+use App\Livewire\ShowArchetype;
 use App\Livewire\ShowPlayers;
 use App\Livewire\ShowPlayer;
 use App\Livewire\ShowArticles;
@@ -44,6 +46,10 @@ Route::get('decks', ShowDecks::class)
     ->name('decks');
 Route::get('decks/{id}', ShowDeck::class)
     ->name('deck');
+Route::get('archetypes/', ShowArchetypes::class)
+    ->name('archetypes');
+Route::get('archetypes/{id}', ShowArchetype::class)
+    ->name('archetype');
 
 Route::get('players', ShowPlayers::class)
     ->name('players');

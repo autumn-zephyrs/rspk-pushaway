@@ -39,7 +39,7 @@
                         <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Search by Username</h3>
                     </div>
                     <div class="flex justify-center mx-2">
-                        <input type="text" wire:model.live="query" class="h-8 w-11/12 shadow-inner rounded border-holon-400" placeholder="jklacz...">
+                        <input type="text" wire:change.live="search()" wire:model.live="query" class="h-8 w-11/12 shadow-inner rounded border-holon-400" placeholder="jklacz...">
                     </div>
                 </div>
             </div>

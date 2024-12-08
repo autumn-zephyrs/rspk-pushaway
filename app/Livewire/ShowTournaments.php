@@ -16,7 +16,7 @@ class ShowTournaments extends Component
     #[Url (keep:true)]
     public $page = 1;
 
-    #[Url]
+    #[Url (keep:true)]
     public $query = '';
 
     public function mount() 
@@ -35,11 +35,6 @@ class ShowTournaments extends Component
         $this->nextPage();
     }
 
-    public function getCard()
-    {
-
-    }
-
     public function previous() 
     {
         $this->page--;
@@ -48,13 +43,8 @@ class ShowTournaments extends Component
 
     public function render()
     {
-        return view('livewire.show-tournaments', [
-            'tournaments' => Tournament::has('tournamentStandings')->where('name', 'like', '%'.$this->query.'%')->orderBy('date', 'DESC')->paginate(20),
-        ]);
+        $tournaments = Tournament::has('tournamentStandings')->where('name', 'like', '%'.$this->query.'%')->orderBy('date', 'DESC')->paginate(20);
+        return view('livewire.show-tournaments', compact('tournaments'));
     }
 
-    // public function paginationView()
-    // {
-    //     return 'livewire.custom-pagination-links';
-    // }
 }
