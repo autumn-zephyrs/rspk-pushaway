@@ -68,10 +68,7 @@ class ShowArchetype extends Component
                     $losses++;
                 }
                 $output[$type->identifier] = round(($wins === 0 ? 0 : $wins / ($wins + $losses + $ties)) * 100, 2);
-            } else {
-                $output[$type->identifier] = 50;
             }
-        }
         $matchups = collect($output);
 
         return view('livewire.show-archetype', compact('types', 'matchups'));
