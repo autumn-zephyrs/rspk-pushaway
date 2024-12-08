@@ -42,7 +42,7 @@ class ShowArchetype extends Component
             } 
     
             foreach($pairings as $pairing) {
-                if(($pairing->player_1_deck == $pairing->player_2_deck)) {
+                if(($type->identifier == $this->archetype)) {
                     $output[$type->identifier] = 50;
                     continue;
                 }
