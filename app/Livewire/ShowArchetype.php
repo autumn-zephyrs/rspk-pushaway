@@ -42,7 +42,7 @@ class ShowArchetype extends Component
             } 
     
             foreach($pairings as $pairing) {
-                if(($pairing->player_1_deck == $pairing->player_2_deck)) {
+                if(($pairing->player_1_deck != $pairing->player_2_deck)) {
                     if ($pairing->player_1_deck == $this->archetype->identifier) {
                         $player = $pairing->player_1;
                     } else {
