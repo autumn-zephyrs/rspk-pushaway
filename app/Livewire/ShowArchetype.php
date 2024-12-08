@@ -45,7 +45,7 @@ class ShowArchetype extends Component
                 if(($pairing->player_1_deck == $pairing->player_2_deck)) {
                     $output[$type->identifier] = 50;
                     continue;
-                }  
+                }
                 if ($pairing->player_1_deck == $this->archetype->identifier) {
                     $player = $pairing->player_1;
                 } else {
@@ -69,6 +69,7 @@ class ShowArchetype extends Component
                 }
                 $output[$type->identifier] = round(($wins === 0 ? 0 : $wins / ($wins + $losses + $ties)) * 100, 2);
             }
+        }
         $matchups = collect($output);
 
         return view('livewire.show-archetype', compact('types', 'matchups'));
