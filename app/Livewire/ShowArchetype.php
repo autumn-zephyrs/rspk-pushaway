@@ -19,7 +19,7 @@ class ShowArchetype extends Component
 
     public function render()
     {
-        $types = DeckType::has('decks')->get();
+        $types = DeckType::has('decks')->orderBy('name', 'ASC')->get();
         $output = [];
         $pairingsData = [];
 
@@ -42,32 +42,32 @@ class ShowArchetype extends Component
             } 
     
             foreach($pairings as $pairing) {
-                if(($type->identifier == $this->archetype)) {
+                if(($this->archetype->identifier !== $type->identifier)) {
+                    if ($pairing->player_1_deck == $this->archetype->identifier) {
+                        $player = $pairing->player_1;
+                    } else {
+                        $player = $pairing->player_2;
+                    }
+                    if          ($pairing->winner == $player) {
+                        //If player 1 wins and we are player 1
+                        $wins++;
+                    } else if   ($pairing->winner == -1) {
+                        //If the round is a double loss
+                        $losses++;
+                    } else if   ($pairing->winner == 0) {
+                        //If the round is a double loss
+                        $ties++;
+                    }else if   ($pairing->player_2 == null) {
+                        //If the round is a bye
+                        $wins++;
+                    } else {
+                        //At this point surely we lose
+                        $losses++;
+                    }
+                    $output[$type->identifier] = round(($wins === 0 ? 0 : $wins / ($wins + $losses + $ties)) * 100, 2);
+                } else {
                     $output[$type->identifier] = 50;
-                    continue;
                 }
-                if ($pairing->player_1_deck == $this->archetype->identifier) {
-                    $player = $pairing->player_1;
-                } else {
-                    $player = $pairing->player_2;
-                }
-                if          ($pairing->winner == $player) {
-                    //If player 1 wins and we are player 1
-                    $wins++;
-                } else if   ($pairing->winner == -1) {
-                    //If the round is a double loss
-                    $losses++;
-                } else if   ($pairing->winner == 0) {
-                    //If the round is a double loss
-                    $ties++;
-                }else if   ($pairing->player_2 == null) {
-                    //If the round is a bye
-                    $wins++;
-                } else {
-                    //At this point surely we lose
-                    $losses++;
-                }
-                $output[$type->identifier] = round(($wins === 0 ? 0 : $wins / ($wins + $losses + $ties)) * 100, 2);
             }
         }
         $matchups = collect($output);
