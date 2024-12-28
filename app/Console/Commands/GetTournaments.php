@@ -103,9 +103,9 @@ class GetTournaments extends Command
                     [
                         'tournament_standing_id'    =>  $s->id,
                         'tournament_limitless_id'   =>  $t->limitless_id,
-                        'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                     ],
                     [
+                        'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                         'player_username'           =>  $standing->player,
                         'date'                      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date)),
                         'placement'                 =>  $standing->placing ?? $tournament->players // -1 implies DQ from Tourney?
