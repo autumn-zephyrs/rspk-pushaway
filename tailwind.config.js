@@ -13,6 +13,9 @@ module.exports = {
                 'raichu': "url('/images/raichu.png')",
                 'reporter': "url('/images/tv.png')",
                 'hrt': "url('/images/hrt.jpg')",
+                'logo-desktop': "url('/images/logo-desktop.png')",
+                'logo-mobile': "url('/images/logo-mobile.png')",
+                'logo-font': "url('/images/logo-font.png')"
             },
             "colors": {
                 "holon": {

@@ -43,7 +43,14 @@ class ShowDecks extends Component
     public function render()
     {
         return view('livewire.show-decks', [
-            'decks' => Deck::has('deckCards')->where('identifier', 'like', '%'.$this->identifier.'%')->orderBy('id', 'ASC')->where('player_username', 'like', '%'.$this->query.'%')->paginate(20),
+
+            'tournaments' => Tournament::orderBy('date', 'DESC')->get(),
+            'decks' => Deck::has('deckCards')
+                ->where('identifier', 'like', '%'.$this->identifier.'%')
+                ->orderBy('date', 'DESC')
+                ->orderBy('placement', 'ASC')
+                ->where('player_username', 'like', '%'.$this->query.'%')
+                ->paginate(20),
             'types' => DeckType::has('decks')->withCount(['decks'])->orderBy('decks_count', 'DESC')->get()
         ]);
     }

@@ -76,19 +76,19 @@ class GetTournaments extends Command
             $standings = json_decode($response->getBody()->getContents());
 
             foreach($standings as $standing) {
-                $s = TournamentStanding::firstOrcreate(
+                $s = TournamentStanding::updateOrCreate(
                     [
                         'tournament_limitless_id'   =>  $t->limitless_id,
                         'player_username'           =>  $standing->player,
                     ],
                     [   
-                        'placement'                 =>  $standing->placing ?? '-1', // -1 implies DQ from Tourney?
+                        'placement'                 =>  $standing->placing ?? $tournament->players, // -1 implies DQ from Tourney?
                         'drop'                      =>  $standing->drop
                     ]
                 );
 
                 if ($standing->player) {
-                    $p = Player::firstOrCreate(
+                    $p = Player::updateOrCreate(
                         [
                             'username' => $standing->player,
                         ],
@@ -99,16 +99,20 @@ class GetTournaments extends Command
                     );          
                 }
 
-                $d = Deck::firstOrCreate(
+                $d = Deck::updateOrCreate(
                     [
                         'tournament_standing_id'    =>  $s->id,
                         'tournament_limitless_id'   =>  $t->limitless_id,
+                        'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                     ],
                     [
-                        'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
                         'player_username'           =>  $standing->player,
+                        'date'                      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date)),
+                        'placement'                 =>  $standing->placing ?? $tournament->players // -1 implies DQ from Tourney?
                     ]
                 );
+
+                $cards = DeckCard::where('deck_id', $d->id)->delete();
                 
                 $deck = $standing->decklist;
                 if(!empty($deck)) {

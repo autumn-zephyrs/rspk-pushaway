@@ -1,10 +1,7 @@
 <div class="p-6 mx-auto max-w-7xl lg:p-8">
     <div class="flex justify-center">
         <div class="font-bold lg:mt-6 lg:text-6xl text-lg text-holon-900 flex items-center gap-4 justify-end grid grid-cols-5">
-            <img class="col-span-2 lg:h-20 h-16 mx-auto" src="/images/logo.png"></img>
-            <div class="col-span-3 mx-auto justify-end">
-                HOLON RESEARCH TOWER 
-            </div>
+            <img class="col-span-5 h-48 mx-auto" src="/images/logo-font.png"></img>
         </div>
     </div>
     <div class="mt-8">

@@ -23,7 +23,7 @@ class Deck extends Model
      *
      * @var array
      */
-    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'identifier', 'player_username'];
+    protected $fillable = ['tournament_standing_id', 'tournament_limitless_id', 'identifier', 'player_username', 'placement', 'date'];
 
     public function deckCards(): HasMany
     {

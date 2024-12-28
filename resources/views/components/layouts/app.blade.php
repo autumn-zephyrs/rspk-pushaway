@@ -24,11 +24,12 @@
         <nav  class="sticky top-0 flex-no-wrap lg:flex-wrap flex h-20 w-screen z-50 items-center bg-holon-700 drop-shadow-lg">
             <div class="flex items-center justify-between w-full">
                 <div class="flex justify-between w-full">
-                    <div href="/" class="bg-cover bg-center h-20 mr-6 lg:bg-hrt bg-center">
-                        <a href="/" class="lg:pl-8 pl-4 h-20 pr-4 items-center flex font-bold text-gray-900 dark:text-white text-lg gap-2 font-title lg:bg-black/50"> 
-                            <img class="h-full py-4" src="/images/logo.png"></img>
-                            <div class="hidden lg:flex text-white text-base font-hanzeexr">HOLON <br>RESEARCH TOWER</div> 
-                            <div class="lg:hidden flex text-white text-xl">HRT</div> 
+                    <div href="/" class="bg-cover bg-center h-20 mr-6 lg:bg-logo_desktop bg-center">
+                        <a href="/" class="lg:flex hidden h-20"> 
+                            <img class="h-20 w-56 object-cover" src="/images/logo-desktop.png"></img>
+                        </a>
+                        <a href="/" class="flex lg:hidden h-20"> 
+                            <img class="w-40 h-20  object-cover" src="/images/logo-mobile.png"></img>
                         </a>
                     </div>
                     <div class="lg:flex hidden pr-4">

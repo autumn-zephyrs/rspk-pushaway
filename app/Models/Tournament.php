@@ -59,4 +59,9 @@ class Tournament extends Model
         ->where('placement', 1);
     }
 
+    public function getPlacementsAttribute() {
+        $placements = $this->tournamentStandings;
+        return $this->tournamentStandings->merge($this->drops);
+    }
+
 }
