@@ -1,8 +1,17 @@
 <div class="p-6 mx-auto max-w-7xl lg:p-8">
     <div class="flex justify-center">
         <div class="font-bold lg:mt-6 lg:text-6xl text-lg text-holon-900 flex items-center gap-4 justify-end grid grid-cols-5">
-            <img class="col-span-5 h-48 mx-auto" src="/images/logo-font.png"></img>
+            <img class="col-span-5 lg:h-48 mx-auto" src="/images/logo-font.png"></img>
         </div>
+    </div>
+    <div class="mt-8 col-span-5 text-sm mx-auto lg:w-2/3">
+        <p>
+            Welcome to Holon Research Tower, we are a community dedicated to archiving data for the community-run RS-PK Format for the Pokémon Trading Card Game. 
+            The RS-PK format consists of all Generation 3 cards. For more information, please visit 
+            <a class="text-holon-700 hover:text-gray-500" target="_blank" href="https://jklaczpokemon.com/ex/">
+                Jason Klaczynski's blog!
+            </a>
+        </p>
     </div>
     <div class="mt-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
@@ -16,7 +25,7 @@
                         </h2>
 
                         <p class="hidden lg:flex mt-4 text-sm leading-relaxed text-holon-500">
-                            Check out the latest decklists from EX Block tournaments on Limitless.
+                            Check out the latest decklists from RSPK Block tournaments on Limitless.
                         </p>
                     </div>
 

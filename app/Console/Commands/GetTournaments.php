@@ -99,7 +99,7 @@ class GetTournaments extends Command
                     );          
                 }
 
-                $d = Deck::updateOrCreate(
+                $d = Deck::firstOrCreate(
                     [
                         'tournament_standing_id'    =>  $s->id,
                         'tournament_limitless_id'   =>  $t->limitless_id,
