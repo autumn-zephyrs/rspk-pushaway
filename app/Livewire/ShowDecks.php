@@ -51,7 +51,7 @@ class ShowDecks extends Component
                 ->orderBy('placement', 'ASC')
                 ->where('player_username', 'like', '%'.$this->query.'%')
                 ->paginate(20),
-            'types' => DeckType::has('decks')->withCount(['decks'])->orderBy('decks_count', 'DESC')->get()
+            'types' => DeckType::has('decks')->orderBy('name', 'ASC')->get()
         ]);
     }
 }
