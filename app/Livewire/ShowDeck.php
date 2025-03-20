@@ -18,7 +18,7 @@ class ShowDeck extends Component
 
     public function render()
     {
-        $types = DeckType::has('decks')->withCount(['decks'])->orderBy('decks_count', 'DESC')->get();
+        $types = DeckType::has('decks')->withCount(['decks'])->orderBy('name', 'ASC')->get();
         return view('livewire.show-deck', compact('types'));
     }
 }
