@@ -82,13 +82,15 @@
                             <div class="col-span-5 flex items-center gap-2 border-r border-holon-400 lg:py-1 py-2 justify-between">
                                 <div class="text-sm lg:text-base">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</div>
                                 <div class="flex gap-2 pr-4">
-                                    @if($deck->deckType->icon_primary !== 'substitute')
-                                        <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
-                                        @if($deck->deckType->icon_secondary)
-                                            <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
+                                    @if ($deck->deckType)
+                                        @if($deck->identifier !== 'substitute')
+                                            <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
+                                            @if($deck->deckType->icon_secondary)
+                                                <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
+                                            @endif
+                                        @else
+                                            <img class="max-h-4 lg:max-h-6" src="/images/substitute.png">
                                         @endif
-                                    @else
-                                        <img class="max-h-4 lg:max-h-6" src="/images/substitute.png">
                                     @endif
                                 </div>
                             </div>
