@@ -18,9 +18,9 @@
                             </div>
                             <div class="flex gap-2">
                                 @if($type->icon_primary !== 'substitute')
-                                    <img class="h-6 aspect-square" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$type->icon_primary}}.png">
+                                    <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_primary}}.png">
                                     @if($type->icon_secondary)
-                                        <img class="h-6 aspect-square" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$type->icon_secondary}}.png">
+                                        <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_secondary}}.png">
                                     @endif
                                 @else
                                     <img class="max-h-6" src="/images/substitute.png">
@@ -59,9 +59,9 @@
                             {{$archetype->name}}
                             <div class="flex gap-2 pr-4">
                                 @if($archetype->icon_primary !== 'substitute')
-                                    <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$archetype->icon_primary}}.png">
+                                    <img class="max-h-4 lg:max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$archetype->icon_primary}}.png">
                                     @if($archetype->icon_secondary)
-                                        <img class="max-h-4 lg:max-h-6" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$archetype->icon_secondary}}.png">
+                                        <img class="max-h-4 lg:max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$archetype->icon_secondary}}.png">
                                     @endif
                                 @else
                                     <img class="max-h-4 lg:max-h-6" src="/images/substitute.png">

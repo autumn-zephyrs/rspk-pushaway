@@ -22,9 +22,9 @@
                             </div>
                             <div class="flex gap-2">
                                 @if($type->icon_primary !== 'substitute')
-                                    <img class="h-6 aspect-square" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$type->icon_primary}}.png">
+                                    <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_primary}}.png">
                                     @if($type->icon_secondary)
-                                        <img class="h-6 aspect-square" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$type->icon_secondary}}.png">
+                                        <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_secondary}}.png">
                                     @endif
                                 @else
                                     <img class="max-h-6" src="/images/substitute.png">
@@ -54,9 +54,9 @@
                                 <a href="/tournaments/standings/{{$deck->tournamentStanding->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
                                     @if($deck->deckType->icon_primary !== 'substitute')
-                                        <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
+                                        <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
                                         @if($deck->deckType->icon_secondary)
-                                            <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
+                                            <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$deck->deckType->icon_secondary}}.png">
                                         @endif
                                     @else
                                         <img class="max-h-8" src="/images/substitute.png">

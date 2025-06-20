@@ -27,9 +27,9 @@
                                 <a href="/decks?identifier={{$standing->deck->identifier}}" class="hover:text-slate-700  text-lg font-semibold">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
                                     @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                        <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
+                                        <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
                                         @if($standing->deck->deckType->icon_secondary)
-                                            <img class="max-h-8" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                            <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
                                         @endif
                                     @else
                                         <img class="max-h-8" src="/images/substitute.png">
