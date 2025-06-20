@@ -12,7 +12,6 @@ use App\Models\Deck;
 use App\Models\DeckCard;
 use App\Models\Card;
 use Symfony\Component\Console\Output\ConsoleOutput;
-Use PokemonTCG\Pokemon;
 
 class GetTournaments extends Command
 {

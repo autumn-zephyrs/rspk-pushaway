@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('set_code');
+            $table->text('set_id')->nullable();;
+            $table->text('set_code')->nullable();;
             $table->text('set_name')->nullable();
             $table->text('number');
             $table->text('type');
