@@ -37,6 +37,11 @@ class Tournament extends Model
         ->orderBy('drop', 'desc');
     }
 
+    public function phases(): HasMany
+    {
+        return $this->hasMany(TournamentPhase::class, 'tournament_limitless_id', 'limitless_id');
+    }
+
     public function tournamentPairings(): HasMany
     {
         return $this->hasMany(TournamentPairing::class, 'tournament_limitless_id', 'limitless_id');
