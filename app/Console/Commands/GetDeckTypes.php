@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use App\Models\DeckType;
-use App\Repositories\DeckTypeRepository;
 
 class getDeckTypes extends Command
 {
@@ -65,7 +64,6 @@ class getDeckTypes extends Command
                             ],
                             [
                                 'name'              =>  $variant->name,
-                                'parent'            =>  $deck->name,
                                 'icon_primary'      =>  isset($deck->icons[0]) ? $deck->icons[0] : null,
                                 'icon_secondary'    =>  $variant->icon, 
                             ]   
@@ -74,20 +72,6 @@ class getDeckTypes extends Command
                 }
             }
             $progressBar->advance();
-        }
-        $decks = new DeckTypeRepository;
-        foreach ($decks->decks as $deck) {
-            DeckType::firstOrCreate(
-                [   
-                    'identifier'        =>  $deck->identifier   
-                ],
-                [
-                    'name'              =>  $deck->name,
-                    'parent'            =>  $deck->parent,
-                    'icon_primary'      =>  isset($deck->icons[0]) ? $deck->icons[0] : null,
-                    'icon_secondary'    =>  isset($deck->icons[1]) ? $deck->icons[1] : null 
-                ]   
-            );
         }
         $o = DeckType::firstOrCreate(
             [   

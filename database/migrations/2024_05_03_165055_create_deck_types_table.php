@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('identifier');
             $table->text('name');
+            $table->text('parent')->nullable();
             $table->text('icon_primary')->nullable();
             $table->text('icon_secondary')->nullable();
         });
