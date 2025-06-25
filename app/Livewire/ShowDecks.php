@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Livewire\Component;
-use App\Models\Deck;
+use App\Models\TournamentStanding;
 use App\Models\DeckType;
 use App\Models\Tournament;
 
@@ -45,7 +45,7 @@ class ShowDecks extends Component
         return view('livewire.show-decks', [
 
             'tournaments' => Tournament::orderBy('date', 'DESC')->get(),
-            'decks' => Deck::has('deckCards')
+            'decks' => TournamentStanding::has('deckCards')
                 ->where('identifier', 'like', '%'.$this->identifier.'%')
                 ->orderBy('date', 'DESC')
                 ->orderBy('placement', 'ASC')

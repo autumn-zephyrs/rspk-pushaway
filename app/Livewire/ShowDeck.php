@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Deck;
+use App\Models\TournamentStanding;
 use App\Models\DeckType;
 
 class ShowDeck extends Component
@@ -13,7 +13,7 @@ class ShowDeck extends Component
 
     public function mount($id) 
     {
-        $this->deck = Deck::find($id);
+        $this->deck = TournamentStanding::find($id);
     }
 
     public function render()

@@ -72,9 +72,9 @@
                     </div>
                 </div>
                 @foreach ($decks as $index => $deck)
-                    @if ($index === 0 || $decks[$index]->tournamentStanding->tournament->id != $decks[$index-1]->tournamentStanding->tournament->id )
+                    @if ($index === 0 || $decks[$index]->tournament->id != $decks[$index-1]->tournament->id )
                         <div class="bg-holon-300 py-1 px-4">
-                            <a href="/tournaments/{{$decks[$index]->tournamentStanding->tournament->limitless_id}}" class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</a>
+                            <a href="/tournaments/{{$decks[$index]->tournament->limitless_id}}" class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournament->name}} - {{date("dS M Y", strtotime($deck->tournament->date))}}</a>
                         </div>
                     @endif
                     <div class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 flex-none hover:text-slate-700 hover:cursor-pointer ">
@@ -92,8 +92,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="lg:flex hidden text-base col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
-                            <div class="lg:hidden flex text-xs col-span-1 ml-1 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement}} </div>
+                            <div class="lg:flex hidden text-base col-span-1 ml-2 flex items-center text-gray-800">{{$deck->placement === -1 ? "DNF" : $deck->placement . ' / ' . $deck->tournament->players}} </div>
+                            <div class="lg:hidden flex text-xs col-span-1 ml-1 flex items-center text-gray-800">{{$deck->placement === -1 ? "DNF" : $deck->placement}} </div>
                             <h2 class="hidden lg:flex col-span-3 flex items-center text-gray-800">
                                 {{$deck->player->name}} ({{$deck->player_username}})
                             </h2>

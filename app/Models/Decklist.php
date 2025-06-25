@@ -19,6 +19,6 @@ class Decklist extends Model
      *
      * @var array
      */
-    protected $fillable = ['deck_id', 'name', 'count', 'set', 'number'];
+    protected $fillable = ['tournament_standing_id', 'name', 'count', 'set', 'number'];
 
 }

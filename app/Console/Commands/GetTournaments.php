@@ -126,6 +126,7 @@ class GetTournaments extends Command
                         'X-Access-Key'=> env("LIMITLESS_KEY")
                     ],
                 ]);
+
                 $standings = json_decode($response->getBody()->getContents());
 
                 foreach($standings as $standing) {
@@ -135,8 +136,13 @@ class GetTournaments extends Command
                             'player_username'           =>  $standing->player,
                         ],
                         [   
+                            'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
+                            'wins'                      =>  $standing->record->wins,
+                            'losses'                    =>  $standing->record->losses,
+                            'ties'                      =>  $standing->record->ties,
                             'placement'                 =>  $standing->placing ?? $tournament->players, // -1 implies DQ from Tourney?
-                            'drop'                      =>  $standing->drop
+                            'drop'                      =>  $standing->drop,
+                            'date'                      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date)),
                         ]
                     );
     
@@ -151,37 +157,11 @@ class GetTournaments extends Command
                             ],
                         );          
                     }
-                    $d = Deck::firstOrCreate(
-                        [
-                            'tournament_standing_id'    =>  $s->id,
-                            'tournament_limitless_id'   =>  $t->limitless_id,
-                        ],
-                        [
-                            'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
-                            'player_username'           =>  $standing->player,
-                            'date'                      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date)),
-                            'placement'                 =>  $standing->placing ?? $tournament->players // -1 implies DQ from Tourney?
-                        ]
-                    );
-    
-                    $cards = DeckCard::where('deck_id', $d->id)->delete();
-    
-                    $deck = $standing->decklist;
-                    $d = Deck::firstOrCreate(
-                        [
-                            'tournament_standing_id'    =>  $s->id,
-                            'tournament_limitless_id'   =>  $t->limitless_id,
-                        ],
-                        [
-                            'identifier'                =>  !empty($standing->deck->id) ? $standing->deck->id : null,
-                            'player_username'           =>  $standing->player,
-                            'date'                      =>  gmdate("Y-m-d\TH:i:s", strtotime($tournament->date)),
-                            'placement'                 =>  $standing->placing ?? $tournament->players // -1 implies DQ from Tourney?
-                        ]
-                    );
-    
-                    if(!empty($deck)) {
-                        foreach ($deck as $cardType => $cards) {
+
+                    $decklist = $standing->decklist;
+
+                    if(!empty($decklist)) {
+                        foreach ($decklist as $cardType => $cards) {
                             foreach($cards as $card) {
                                 if ($cardType == 'energy') {
                                     $c = Card::where('name', str_replace('Delta', 'δ', $card->name))->first();
@@ -192,7 +172,7 @@ class GetTournaments extends Command
                                 }
                                 $dc = DeckCard::create(
                                     [
-                                        'deck_id'                   =>  $s->id,
+                                        'tournament_standing_id'    =>  $s->id,
                                         'card_id'                   =>  $c->id,
                                         'count'                     =>  $card->count,
                                     ]
@@ -205,139 +185,6 @@ class GetTournaments extends Command
             }
             $progressBar->advance();
         }
-
-
-        //         $cards = DeckCard::where('deck_id', $d->id)->delete();
-                
-        //         $deck = $standing->decklist;
-        //         if(!empty($deck)) {
-        //             foreach ($deck as $cardType => $cards) {
-        //                 foreach($cards as $card) {
-        //                     if($card->name === "Lightning Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  109,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Lightning Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Fire Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  108,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Fire Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Fighting Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  105,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Fighting Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Psychic Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  107,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Psychic Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Metal Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  94,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Metal Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Water Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  106,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Water Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Darkness Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  93,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Darkness Energy',
-        //                             ]
-        //                         );
-        //                     }
-        //                     elseif($card->name === "Grass Energy") {
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  'RS',
-        //                                 'number'                    =>  104,
-        //                             ],
-        //                             [
-        //                                 'type'                      => 'energy',
-        //                                 'name'                      => 'Grass Energy',
-        //                             ]
-        //                         );
-        //                     } else{
-        //                         $c = Card::firstOrCreate(
-        //                             [
-        //                                 'set_code'                  =>  $card->set,
-        //                                 'number'                    =>  $card->number,
-        //                             ],
-        //                             [
-        //                                 'type'                      => $cardType,
-        //                                 'name'                      => $card->name,
-        //                             ]
-        //                         );
-        //                     }
-        //                     $dc = DeckCard::create(
-        //                         [
-        //                             'deck_id'                   =>  $s->id,
-        //                             'card_id'                   =>  $c->id,
-        //                             'count'                     =>  $card->count,
-        //                         ]
-        //                     );
-        //                 }
-        //             }       
-        //         }
-        //     }
-
-        //     $response = $client->request('GET', 'tournaments/' . $tournament->id . '/pairings', [
-        //             'headers' =>  
-        //         [
-        //             'X-Access-Key'=> env("LIMITLESS_KEY")
-        //         ],
-        //     ]);
 
         $progressBar->finish();
         echo("\r\n");

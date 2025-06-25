@@ -44,11 +44,11 @@
                             {{$tournament->winner->player->name}}
                         </div>
                         <div class="flex gap-2">
-                            @if($tournament->winner->deck->deckType)
-                                @if($tournament->winner->deck->deckType->icon_primary !== 'substitute')
-                                    <img class="max-h-3 lg:max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$tournament->winner->deck->deckType->icon_primary}}.png">
-                                    @if($tournament->winner->deck->deckType->icon_secondary)
-                                        <img class="max-h-3 lg:max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$tournament->winner->deck->deckType->icon_secondary}}.png">
+                            @if($tournament->winner->deckType)
+                                @if($tournament->winner->deckType->icon_primary !== 'substitute')
+                                    <img class="max-h-3 lg:max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$tournament->winner->deckType->icon_primary}}.png">
+                                    @if($tournament->winner->deckType->icon_secondary)
+                                        <img class="max-h-3 lg:max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$tournament->winner->deckType->icon_secondary}}.png">
                                     @endif
                                 @else
                                     <img class="max-h-3 lg:max-h-4" src="/images/substitute.png">

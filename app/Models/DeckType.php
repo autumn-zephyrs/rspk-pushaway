@@ -21,13 +21,14 @@ class DeckType extends Model
 
     public function decks(): HasMany
     {
-        return $this->hasMany(Deck::class, 'identifier', 'identifier');
+        return $this->hasMany(TournamentStanding::class, 'identifier', 'identifier');
     }
     
     public function parent(): HasOne
     {
-        return $this->hasOne(Deck::class, 'name', 'parent');
+        return $this->hasOne(DeckType::class, 'name', 'parent');
     }
+    
     public function getWinrateAttribute()
     {
         $wins = 0;
