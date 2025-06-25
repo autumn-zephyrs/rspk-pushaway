@@ -79,13 +79,13 @@ class getDeckTypes extends Command
         foreach ($decks->decks as $deck) {
             DeckType::firstOrCreate(
                 [   
-                    'identifier'        =>  $deck->identifier   
+                    'identifier'        =>  $deck['identifier']  
                 ],
                 [
-                    'name'              =>  $deck->name,
-                    'parent'            =>  $deck->parent,
-                    'icon_primary'      =>  isset($deck->icons[0]) ? $deck->icons[0] : null,
-                    'icon_secondary'    =>  isset($deck->icons[1]) ? $deck->icons[1] : null 
+                    'name'              =>  $deck['name'],
+                    'parent'            =>  $deck['parent'],
+                    'icon_primary'      =>  isset($deck['icons'][0]) ? $deck['icons'][0] : null,
+                    'icon_secondary'    =>  isset($deck['icons'][1]) ? $deck['icons'][1] : null 
                 ]   
             );
         }
