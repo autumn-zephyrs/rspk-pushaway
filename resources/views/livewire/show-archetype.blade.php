@@ -47,7 +47,7 @@
             <hr>
             <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 px-4 bg-gray-50 rounded mb-8 pb-4">
                 <div class="items-center">
-                    <a href="/archetypes" class="my-4 flex pagination items-center rounded-lg px-4 py-1">
+                    <a href="{{ url()->previous() }}" class="my-4 flex pagination items-center rounded-lg px-4 py-1">
                         <span class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
                             Back
                         </span>
