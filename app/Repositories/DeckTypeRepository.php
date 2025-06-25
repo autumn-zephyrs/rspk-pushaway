@@ -166,7 +166,7 @@ class DeckTypeRepository
         ],
         [
             'identifier'        =>  'dragtrode-sceptile',
-            'parent'            =>  'dragtrode',
+            'parent'            =>  'Dragtrode',
             'name'              =>  'Dragtile',
             'icon_primary'      =>  'dragonite',
             'icon_secondary'    =>  'sceptile',
@@ -187,7 +187,7 @@ class DeckTypeRepository
         ],
         [
             'identifier'        =>  'wet-rat',
-            'parent'            =>  'ratlock',
+            'parent'            =>  'Rat Lock',
             'name'              =>  'Wet Rat',
             'icon_primary'      =>  'raticate',
             'icon_secondary'    =>  'crawdaunt',
@@ -208,7 +208,7 @@ class DeckTypeRepository
         ],
         [
             'identifier'        =>  'dragtrode-charizard',
-            'parent'            =>  null,
+            'parent'            =>  'Dragtrode',
             'name'              =>  'Klacztrdoe',
             'icon_primary'      =>  'dragonite',
             'icon_secondary'    =>  'charizard',

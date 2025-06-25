@@ -84,8 +84,8 @@ class getDeckTypes extends Command
                 [
                     'name'              =>  $deck['name'],
                     'parent'            =>  $deck['parent'],
-                    'icon_primary'      =>  isset($deck['icons'][0]) ? $deck['icons'][0] : null,
-                    'icon_secondary'    =>  isset($deck['icons'][1]) ? $deck['icons'][1] : null 
+                    'icon_primary'      =>  isset($deck['icon_primary']) ? $deck['icon_primary'] : null,
+                    'icon_secondary'    =>  isset($deck['icon_secondary']) ? $deck['icon_secondary'] : null 
                 ]   
             );
         }
