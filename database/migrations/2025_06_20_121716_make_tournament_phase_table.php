@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('tournament_phase', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('set_id')->nullable();;
-            $table->text('set_code')->nullable();;
-            $table->text('set_name')->nullable();
-            $table->text('number');
+            $table->text('tournament_limitless_id');
+            $table->integer('phase');
             $table->text('type');
-            $table->text('image_small')->nullable();
-            $table->text('image_large')->nullable();
+            $table->integer('rounds');
+            $table->text('mode');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('tournament_phase');
     }
 };

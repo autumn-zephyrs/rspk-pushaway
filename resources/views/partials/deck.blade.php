@@ -14,11 +14,11 @@
 <div class="lg:grid grid-cols-3 mt-4 gap-4">
     <div class="col-span- rounded-b mb-2 lg:mb-0">
         <div class="pl-3 bg-holon-600 text-white font-semibold text-lg rounded-t py-1">
-            Pokemon
+            Pokémon
         </div>
         <div class="text-sm leading">
             @foreach($deck->deckCards as $index => $deckCard)
-                @if($deckCard->card->type === 'pokemon')
+                @if($deckCard->card->type === 'Pokémon')
                     <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}} <span class="text-gray-400 text-xs">({{$deckCard->card->set_code}} {{$deckCard->card->number}})</span></div>
                     <hr>
                 @endif
@@ -31,7 +31,7 @@
         </div>
         <div class="text-sm leading">
             @foreach($deck->deckCards as $index => $deckCard)
-                @if($deckCard->card->type === 'trainer')
+                @if($deckCard->card->type === 'Trainer')
                     <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}}</div>
                     <hr>
                 @endif
@@ -44,7 +44,7 @@
         </div>
         <div class="text-sm leading ">
             @foreach($deck->deckCards as $index => $deckCard)
-                @if($deckCard->card->type === 'energy')
+                @if($deckCard->card->type === 'Energy')
                     <div class="pl-2 py-1 {{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}}">{{$deckCard->count}} {{$deckCard->card->name}}</div>
                     <hr>
                 @endif

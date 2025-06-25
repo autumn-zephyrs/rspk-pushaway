@@ -17,13 +17,17 @@ class DeckType extends Model
      *
      * @var array
      */
-    protected $fillable = ['identifier', 'name', 'icon_primary', 'icon_secondary'];
+    protected $fillable = ['identifier', 'name', 'parent', 'icon_primary', 'icon_secondary'];
 
     public function decks(): HasMany
     {
         return $this->hasMany(Deck::class, 'identifier', 'identifier');
     }
-
+    
+    public function parent(): HasOne
+    {
+        return $this->hasOne(Deck::class, 'name', 'parent');
+    }
     public function getWinrateAttribute()
     {
         $wins = 0;

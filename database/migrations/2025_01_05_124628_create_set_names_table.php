@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deck_types', function (Blueprint $table) {
+        Schema::create('set_names', function (Blueprint $table) {
             $table->id();
-            $table->text('identifier');
-            $table->text('name');
-            $table->text('parent')->nullable();
-            $table->text('icon_primary')->nullable();
-            $table->text('icon_secondary')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deck_types');
+        Schema::dropIfExists('set_names');
     }
 };
