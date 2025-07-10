@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use App\Models\Card;
 use Pokemon\Pokemon;
 
-class getCards extends Command
+class GetCards extends Command
 {
     /**
      * The name and signature of the console command.

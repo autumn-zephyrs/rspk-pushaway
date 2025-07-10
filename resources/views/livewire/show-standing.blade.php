@@ -24,12 +24,12 @@
                         <div class="items-center gap-2">
                             <a href="/players/{{$standing->player->id}}" class="hover:text-slate-700 text-2xl font-bold mb-2">{{$standing->player->name}} ({{$standing->player_username}})</a>
                             <div class="items-center flex gap-2">
-                                <a href="/decks?identifier={{$standing->deck->identifier}}" class="hover:text-slate-700  text-lg font-semibold">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</a>
+                                <a href="/decks?identifier={{$standing->identifier}}" class="hover:text-slate-700  text-lg font-semibold">{{isset($standing->deckType) ? $standing->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
-                                    @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                        <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                        @if($standing->deck->deckType->icon_secondary)
-                                            <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                    @if($standing->deckType->icon_primary !== 'substitute')
+                                        <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_primary}}.png">
+                                        @if($standing->deckType->icon_secondary)
+                                            <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_secondary}}.png">
                                         @endif
                                     @else
                                         <img class="max-h-8" src="/images/substitute.png">

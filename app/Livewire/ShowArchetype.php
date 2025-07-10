@@ -19,7 +19,7 @@ class ShowArchetype extends Component
 
     public function render()
     {
-        $types = DeckType::has('decks')->orderBy('name', 'ASC')->get();
+        $types = DeckType::has('tournamentStandings')->orderBy('name', 'ASC')->get();
         $output = [];
         $pairingsData = [];
 

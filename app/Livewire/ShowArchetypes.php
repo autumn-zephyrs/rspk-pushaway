@@ -11,6 +11,23 @@ class ShowArchetypes extends Component
 
     use WithPagination;
 
+    protected $listeners = ['search'];
+
+
+    #[Url]
+    public $page = 1;
+
+    #[Url (keep:true)]
+    public $identifier = '';
+
+    #[Url]
+    public $query = '';
+
+    public function search()
+    {
+        $this->resetPage();
+    }
+
     public function mount() 
     {
 
@@ -19,11 +36,9 @@ class ShowArchetypes extends Component
     public function render()
     {
        
-        $archetypes = DeckType::has('decks')->get()->sortByDesc(function($deckType){
-            return $deckType->yearlyWinrate->percentage;
-        });
+        $archetypes = DeckType::has('tournamentStandings')->orderBy('name', 'ASC')->paginate(20);
 
-        $types = DeckType::has('decks')->orderBy('name', 'ASC')->get();
+        $types = DeckType::has('tournamentStandings')->orderBy('name', 'ASC')->get();
         
         return view('livewire.show-archetypes', compact('types', 'archetypes'));
     }

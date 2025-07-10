@@ -20,7 +20,7 @@ class ShowStanding extends Component
         $p1 = TournamentPairing::where('tournament_limitless_id', '=', $this->standing->tournament_limitless_id)->where('player_1', '=', $this->standing->player_username)->get();
         $p2 = TournamentPairing::where('tournament_limitless_id', '=', $this->standing->tournament_limitless_id)->where('player_2', '=', $this->standing->player_username)->get();
         $this->pairings = $p1->merge($p2);
-        $this->deck = $this->standing->deck;
+        $this->deck = $this->standing;
     }
 
     public function render()

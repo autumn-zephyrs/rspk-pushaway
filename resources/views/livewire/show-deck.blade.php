@@ -18,7 +18,7 @@
                         <a href="/decks/?page=1&identifier={{$type->identifier}}" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} flex items-center justify-between text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
                             <div class="">
                                 <div class="text-sm">{{$type->name}}</div>
-                                <div class="text-xs">{{$type->decks->count()}} Decks</div>
+                                <div class="text-xs">{{$type->tournamentStandings->count()}} Decks</div>
                             </div>
                             <div class="flex gap-2">
                                 @if($type->icon_primary !== 'substitute')

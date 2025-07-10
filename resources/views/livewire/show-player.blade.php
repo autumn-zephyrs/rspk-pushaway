@@ -44,7 +44,7 @@
                             Latest Tournaments
                         </div>
                         @foreach ($player->tournamentStandings as $index => $standing)
-                            @if(!is_null($standing->deck->deckType))
+                            @if(!is_null($standing->deckType))
                                 <a href="/tournaments/standings/{{$standing->id}}" class="hidden lg:grid {{($index % 2 === 0) ? 'bg-holon-100' : 'bg-gray-50'}} grid grid-cols-10 py-1 flex items-center hover:text-slate-600 text-gray-800">
                                     <div class="flex col-span-4 py-1 items-center align-right gap-2 pl-2">
                                         {{$standing->tournament->name}}
@@ -58,16 +58,16 @@
                                         </span>
                                     </div>
                                     <div class="col-span-1">  
-                                        {{$standing->winrate[0]}} - {{$standing->winrate[1]}} - {{$standing->winrate[2]}}
+                                        {{$standing->wins}} - {{$standing->losses}} - {{$standing->ties}}
                                     </div>
                                     <div class="items-center flex gap-2 justify-between col-span-3 pr-2">
-                                        <div class="hover:text-slate-700 ">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</div>
+                                        <div class="hover:text-slate-700 ">{{isset($standing->deckType) ? $standing->deckType->name : 'notfound'}}</div>
 
                                         <div class="flex gap-2">
-                                            @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                                <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                                @if($standing->deck->deckType->icon_secondary)
-                                                    <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                            @if($standing->deckType->icon_primary !== 'substitute')
+                                                <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_primary}}.png">
+                                                @if($standing->deckType->icon_secondary)
+                                                    <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_secondary}}.png">
                                                 @endif
                                             @else
                                                 <img class="max-h-6" src="/images/substitute.png">
@@ -84,16 +84,16 @@
                                         {{date("d M y", strtotime($standing->tournament->date))}}
                                     </div>
                                     <div class="text-xs col-span-2">  
-                                        {{$standing->winrate[0]}}-{{$standing->winrate[1]}}-{{$standing->winrate[2]}}
+                                        {{$standing->wins}}-{{$standing->losses}}-{{$standing->ties}}
                                     </div>
                                     <div class="items-center text-xs flex gap-2 justify-between col-span-4 pr-2">
-                                        <div class="hover:text-slate-700 ">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</div>
+                                        <div class="hover:text-slate-700 ">{{isset($standing->deckType) ? $standing->deckType->name : 'notfound'}}</div>
 
                                         <div class="flex gap-2">
-                                            @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                                <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                                @if($standing->deck->deckType->icon_secondary)
-                                                    <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                            @if($standing->deckType->icon_primary !== 'substitute')
+                                                <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_primary}}.png">
+                                                @if($standing->deckType->icon_secondary)
+                                                    <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_secondary}}.png">
                                                 @endif
                                             @else
                                                 <img class="max-h-4" src="/images/substitute.png">

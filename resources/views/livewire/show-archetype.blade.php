@@ -78,29 +78,29 @@
                             <div class="lg:col-span-1">
                                 <div class="text-xs lg:text-sm text-gray-800 flex justify-between py-1">
                                     <div>Yearly Winrate: </div>
-                                    <div>{{$archetype->yearlyWinrate->percentage}}</div>
+                                    <div></div>
                                 </div>
                                 <div class="text-xs lg:text-sm text-gray-800 flex justify-between py-1">
                                     <div>All-time Winrate: </div>
-                                    <div>{{$archetype->winrate->percentage}}</div>
+                                    <div></div>
                                 </div>
                                 <div class="text-xs lg:text-sm text-gray-800 flex justify-between py-1">
                                     <div>Yearly W/L/T: </div>
-                                    <div>{{$archetype->yearlyWinrate->wins}} / {{$archetype->yearlyWinrate->losses}} / {{$archetype->yearlyWinrate->ties}}</div>
+                                    <div> /  / </div>
                                 </div>
                                 <div class="text-xs lg:text-sm text-gray-800 flex justify-between py-1">
                                     <div>All-time W/L/T: </div>
-                                    <div>{{$archetype->winrate->wins}} / {{$archetype->winrate->losses}} / {{$archetype->winrate->ties}}</div>
+                                    <div> /  / </div>
                                 </div>
                                 <div class="lg:hidden block text-xs lg:text-sm text-gray-800 flex justify-between items-center">
                                     <div>Yearly Best Finish:</div>
                                     @if ($archetype->yearlyBestFinish)
                                         <div>
                                             <div class="pt-1 text-xs lg:text-sm">
-                                                {{$archetype->yearlyBestFinish->tournamentStanding->placement}} / {{$archetype->yearlyBestFinish->tournament->players}} - {{$archetype->yearlyBestFinish->player->name ? $archetype->yearlyBestFinish->player->name : $archetype->bestFinish->player->name}}
+                                                 / 
                                             </div>
                                             <div class="pb-1 text-gray-600 text-xs">
-                                                @ {{$archetype->yearlyBestFinish->tournament->name}} - {{date("d M y", strtotime($archetype->yearlyBestFinish->tournament->date))}}
+                                                @ 
                                             </div>
                                         </div>
                                     @else
@@ -118,10 +118,9 @@
                                     <div>All-time Best Finish:</div>
                                     <div>
                                         <div class="pt-1 text-xs lg:text-sm">
-                                            {{$archetype->bestFinish->tournamentStanding->placement}} / {{$archetype->bestFinish->tournament->players}} - {{$archetype->bestFinish->player->name ? $archetype->bestFinish->player->name : $archetype->bestFinish->player->name}}
-                                        </div>
+                                            
                                         <div class="pb-1 text-gray-600 text-xs">
-                                            @ {{$archetype->bestFinish->tournament->name}} - {{date("d M y", strtotime($archetype->bestFinish->tournament->date))}}
+                                            @ 
                                         </div>
                                     </div>
                                 </div>
@@ -132,10 +131,10 @@
                                     @if ($archetype->yearlyBestFinish)
                                         <div>
                                             <div class="pt-1">
-                                                {{$archetype->yearlyBestFinish->tournamentStanding->placement}} / {{$archetype->yearlyBestFinish->tournament->players}} - {{$archetype->yearlyBestFinish->player->name ? $archetype->yearlyBestFinish->player->name : $archetype->bestFinish->player->name}}
+                                                
                                             </div>
                                             <div class="pb-1 text-gray-600 text-xs">
-                                                @ {{$archetype->yearlyBestFinish->tournament->name}} - {{date("d M y", strtotime($archetype->yearlyBestFinish->tournament->date))}}
+                                                @ 
                                             </div>
                                         </div>
                                     @else
@@ -153,10 +152,10 @@
                                     <div>All-time Best Finish:</div>
                                     <div>
                                         <div class="pt-1">
-                                            {{$archetype->bestFinish->tournamentStanding->placement}} / {{$archetype->bestFinish->tournament->players}} - {{$archetype->bestFinish->player->name ? $archetype->bestFinish->player->name : $archetype->bestFinish->player->name}}
+                                            
                                         </div>
                                         <div class="pb-1 text-gray-600 text-xs">
-                                            @ {{$archetype->bestFinish->tournament->name}} - {{date("d M y", strtotime($archetype->bestFinish->tournament->date))}}
+                                            @ 
                                         </div>
                                     </div>
                                 </div>
