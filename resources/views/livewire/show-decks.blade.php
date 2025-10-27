@@ -30,7 +30,7 @@
                     </select>
                 </form>
                 <div class="pagination items-center mb-4">
-                    {{$decks->withQueryString()->links()}}
+                    {{$decks->withQueryString()->links() }}
                 </div>
             </div>
             <hr>
