@@ -12,7 +12,7 @@
                     <hr>
                     <div class="divide-y overflow-scroll-y divide-holon-200">
                         @foreach($types as $index => $type)
-                        <a href="/archetypes/{{$type->id}}" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} py-2 flex text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base justify-between items-center">
+                        <a href="" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} py-2 flex text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base justify-between items-center">
                             <div class="">
                                 <div class="text-sm">{{$type->name}}</div>
                             </div>
@@ -58,7 +58,7 @@
             <hr>
             <div class="overflow-scroll-y h-60">
                 @foreach ($archetypes as $index=>$archetype)
-                    <a href="/archetypes/{{$archetype->id}}" class="border-b-1 hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-12 px-6 flex items-center">
+                    <a href="" class="border-b-1 hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-12 px-6 flex items-center">
                         <div class="text-gray-800 text-sm lg:text-base lg:col-span-4 col-span-6 ml-2 border-holon-400 py-1 flex justify-between items-center">
                             {{$archetype->name}}
                             <div class="flex gap-2 pr-4">
