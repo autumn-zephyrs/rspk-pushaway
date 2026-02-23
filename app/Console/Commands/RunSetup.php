@@ -32,6 +32,6 @@ class RunSetup extends Command
         echo("Getting deck types... \n");
         $this->call('get:decks');
         echo("Getting tournaments... \n");
-        $this->call('get:tournaments');
+        $this->call('get:tournaments limit=50');
     }
 }
