@@ -28,7 +28,7 @@ class GetTournaments extends Command
      *
      * @var string
      */
-    protected $description = 'Pulls all tournwament data from Limitless';
+    protected $description = 'Pulls all tournament data from Limitless';
 
     /**
      * Execute the console command.
@@ -158,18 +158,23 @@ class GetTournaments extends Command
                         );          
                     }
 
-                    $decklist = $standing->decklist;
-
-                    if(!empty($decklist)) {
+                    if(!empty($standing->decklist)) {
+                        $decklist = $standing->decklist;
                         foreach ($decklist as $cardType => $cards) {
                             foreach($cards as $card) {
+                                var_export($card);
                                 if ($cardType == 'energy') {
                                     $c = Card::where('name', str_replace('Delta', 'δ', $card->name))->first();
                                 } elseif ($card->name == 'Unown') { 
                                     $c = Card::where('set_code', $card->set)->where('number', $card->number[0])->first();
                                 } else {
                                     $c = Card::where('set_code', $card->set)->where('number', $card->number)->first();
+                                } 
+                                
+                                if (!isset($c)) {
+                                    $c = Card::where('name', $card->name)->first();
                                 }
+
                                 $dc = DeckCard::create(
                                     [
                                         'tournament_standing_id'    =>  $s->id,
@@ -177,6 +182,7 @@ class GetTournaments extends Command
                                         'count'                     =>  $card->count,
                                     ]
                                 );
+
                             }
                         }       
                     }

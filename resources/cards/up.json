@@ -1,0 +1,24 @@
+[
+  {
+    "id": "up-101",
+    "name": "Victory Ring",
+    "supertype": "Trainer",
+    "subtypes": [
+      "Item"
+    ],
+    "rules": [
+      "Victory Ring can only be used by official tournament winners.",
+      "Turn all of your Prize cards face up. You may choose any number of them and return them to your deck. If you do, shuffle your deck. Then, take the same number of cards from the top of your deck and put them face down as your Prize cards without looking at them."
+    ],
+    "number": "88",
+    "artist": "Ken Sugimori",
+    "rarity": "Uncommon",
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "images": {
+      "small": "https://tcgone.net/scans/l/unnumbered_promos/101.jpg",
+      "large": "https://tcgone.net/scans/l/unnumbered_promos/101.jpg"
+    }
+  }
+]

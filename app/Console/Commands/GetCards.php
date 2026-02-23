@@ -56,7 +56,7 @@ class GetCards extends Command
         ],
         'ex7' => [
             'id' => 'ex7',
-            'code' => 'TR',
+            'code' => 'TRR',
             'name' => 'EX Team Rocket Returns',
         ],
         'ex8' => [
@@ -133,6 +133,11 @@ class GetCards extends Command
             'id' => 'np',
             'code' => 'NP',
             'name' => 'Black Star Promos',
+        ],
+        'up' => [
+            'id' => 'up',
+            'code' => 'UP',
+            'name' => 'Unnumbered Promos',
         ]
     ];
 
@@ -176,8 +181,8 @@ class GetCards extends Command
         $progressBar->start();
 
         foreach ($allCards as $card) {
-            $setId = $card['set_id'] ?? null;
 
+            $setId = $card['set_id'] ?? null;
             $attrs = [
                 'set_id'    => $this->sets[$setId]['id'] ?? $setId,
                 'set_code'  => $this->sets[$setId]['code'] ?? null,
@@ -189,10 +194,16 @@ class GetCards extends Command
                 'image_large' => $card['image_large'] ?? null,
             ];
 
-            Card::firstOrCreate([
-                'set_id' => $attrs['set_id'],
-                'number' => $attrs['number'],
-            ], $attrs);
+            
+            try {
+                Card::firstOrCreate([
+                    'set_id' => $attrs['set_id'],
+                    'number' => $attrs['number'],
+                ], $attrs);
+            }  catch (\Illuminate\Database\QueryException $exception) {
+                $errorInfo = $exception->errorInfo;
+                $this->error("Error inserting card: " . $attrs['name'] . " (Set: " . $attrs['set_name'] . ", Number: " . $attrs['number'] . ")");
+            }
 
             $progressBar->advance();
         }
