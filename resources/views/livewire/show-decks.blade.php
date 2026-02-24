@@ -2,38 +2,12 @@
 <div class="w-screen">
     <div class="lg:grid lg:grid-cols-12">
         <div class="hidden lg:flex col-start-1 col-end-3">
-            <div class="w-2/12 fixed h-screen bg-holon-200">
+           <div class="w-2/12 fixed h-screen bg-holon-200">
                 <div class="py-1 px-2">
                     <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Deck Archetypes</h3>
                 </div>
                 <hr>
-                <div class="flex-1 bg-holon-50 overflow-auto h-1/2 shadow-inner">
-                    <div wire:click="setIdentifier(null)" class="cursor-pointer px-4 text-base text-sm text-gray-800 hover:text-gray-100 hover:bg-holon-500 py-2 bg-holon-50">All decks</div>
-                    <hr>
-                    <div class="divide-y overflow-scroll-y divide-holon-200">
-                        @foreach($types as $index => $type)
-                        <div wire:click="setIdentifier('{{$type->identifier}}')" wire:change="setIdentifier('{{$type->identifier}}')" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
-                            <div  class="justify-between flex items-center gap-1">
-                                <div class="">
-                                    <div class="text-sm">{{$type->name}}</div>
-                                    <div class="text-xs">{{$type->decks->count()}} Decks</div>
-                                </div>
-                                <div class="flex gap-2">
-                                    @if($type->icon_primary !== 'substitute')
-                                        <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_primary}}.png">
-                                        @if($type->icon_secondary)
-                                            <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_secondary}}.png">
-                                        @endif
-                                    @else
-                                        <img class="max-h-6" src="/images/substitute.png">
-                                    @endif
-                                </div>
-                        </div>
-                            
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
+                @include('partials/deck-types')
                 <div class="mt-2">
                     <div class="py-1 px-2">
                         <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Search by Username</h3>
@@ -56,7 +30,7 @@
                     </select>
                 </form>
                 <div class="pagination items-center mb-4">
-                    {{$decks->withQueryString()->links()}}
+                    {{$decks->withQueryString()->links() }}
                 </div>
             </div>
             <hr>
@@ -72,13 +46,13 @@
                     </div>
                 </div>
                 @foreach ($decks as $index => $deck)
-                    @if ($index === 0 || $decks[$index]->tournamentStanding->tournament->id != $decks[$index-1]->tournamentStanding->tournament->id )
+                    @if ($index === 0 || $decks[$index]->tournament->id != $decks[$index-1]->tournament->id )
                         <div class="bg-holon-300 py-1 px-4">
-                            <a href="/tournaments/{{$decks[$index]->tournamentStanding->tournament->limitless_id}}" class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</a>
+                            <a href="/tournaments/{{$decks[$index]->tournament->limitless_id}}" class="text-sm font-bold flex items-center text-gray-800"> {{$deck->tournament->name}} - {{date("dS M Y", strtotime($deck->tournament->date))}}</a>
                         </div>
                     @endif
                     <div class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 flex-none hover:text-slate-700 hover:cursor-pointer ">
-                        <a href="/decks/{{$deck->id}}" class="grid grid-cols-10 px-6">
+                        <a href="/tournaments/standings/{{$deck->id}}" class="grid grid-cols-10 px-6">
                             <div class="col-span-5 flex items-center gap-2 border-r border-holon-400 lg:py-1 py-2 justify-between">
                                 <div class="text-sm lg:text-base">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</div>
                                 <div class="flex gap-2 pr-4">
@@ -92,8 +66,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="lg:flex hidden text-base col-span-1 ml-2 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} </div>
-                            <div class="lg:hidden flex text-xs col-span-1 ml-1 flex items-center text-gray-800">{{$deck->tournamentStanding->placement === -1 ? "DNF" : $deck->tournamentStanding->placement}} </div>
+                            <div class="lg:flex hidden text-base col-span-1 ml-2 flex items-center text-gray-800">{{$deck->placement === -1 ? "DNF" : $deck->placement . ' / ' . $deck->tournament->players}} </div>
+                            <div class="lg:hidden flex text-xs col-span-1 ml-1 flex items-center text-gray-800">{{$deck->placement === -1 ? "DNF" : $deck->placement}} </div>
                             <h2 class="hidden lg:flex col-span-3 flex items-center text-gray-800">
                                 {{$deck->player->name}} ({{$deck->player_username}})
                             </h2>

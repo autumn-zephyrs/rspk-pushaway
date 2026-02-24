@@ -15,7 +15,7 @@
         <div class="lg:col-start-4 lg:col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 px-4 bg-gray-50 rounded mb-8 pb-4">
             <div class="items-center flex">
                 <div class="my-4 flex pagination items-center rounded-lg px-4 py-1">
-                    <a href="/players" class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
+                    <a href="{{ url()->previous() }}" class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
                         Back
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                             Latest Tournaments
                         </div>
                         @foreach ($player->tournamentStandings as $index => $standing)
-                            @if(!is_null($standing->deck->deckType))
+                            @if(!is_null($standing->deckType))
                                 <a href="/tournaments/standings/{{$standing->id}}" class="hidden lg:grid {{($index % 2 === 0) ? 'bg-holon-100' : 'bg-gray-50'}} grid grid-cols-10 py-1 flex items-center hover:text-slate-600 text-gray-800">
                                     <div class="flex col-span-4 py-1 items-center align-right gap-2 pl-2">
                                         {{$standing->tournament->name}}
@@ -58,16 +58,16 @@
                                         </span>
                                     </div>
                                     <div class="col-span-1">  
-                                        {{$standing->winrate[0]}} - {{$standing->winrate[1]}} - {{$standing->winrate[2]}}
+                                        {{$standing->wins}} - {{$standing->losses}} - {{$standing->ties}}
                                     </div>
                                     <div class="items-center flex gap-2 justify-between col-span-3 pr-2">
-                                        <div class="hover:text-slate-700 ">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</div>
+                                        <div class="hover:text-slate-700 ">{{isset($standing->deckType) ? $standing->deckType->name : 'notfound'}}</div>
 
                                         <div class="flex gap-2">
-                                            @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                                <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                                @if($standing->deck->deckType->icon_secondary)
-                                                    <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                            @if($standing->deckType->icon_primary !== 'substitute')
+                                                <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_primary}}.png">
+                                                @if($standing->deckType->icon_secondary)
+                                                    <img class="max-h-6" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_secondary}}.png">
                                                 @endif
                                             @else
                                                 <img class="max-h-6" src="/images/substitute.png">
@@ -84,16 +84,16 @@
                                         {{date("d M y", strtotime($standing->tournament->date))}}
                                     </div>
                                     <div class="text-xs col-span-2">  
-                                        {{$standing->winrate[0]}}-{{$standing->winrate[1]}}-{{$standing->winrate[2]}}
+                                        {{$standing->wins}}-{{$standing->losses}}-{{$standing->ties}}
                                     </div>
                                     <div class="items-center text-xs flex gap-2 justify-between col-span-4 pr-2">
-                                        <div class="hover:text-slate-700 ">{{isset($standing->deck->deckType) ? $standing->deck->deckType->name : 'notfound'}}</div>
+                                        <div class="hover:text-slate-700 ">{{isset($standing->deckType) ? $standing->deckType->name : 'notfound'}}</div>
 
                                         <div class="flex gap-2">
-                                            @if($standing->deck->deckType->icon_primary !== 'substitute')
-                                                <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_primary}}.png">
-                                                @if($standing->deck->deckType->icon_secondary)
-                                                    <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deck->deckType->icon_secondary}}.png">
+                                            @if($standing->deckType->icon_primary !== 'substitute')
+                                                <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_primary}}.png">
+                                                @if($standing->deckType->icon_secondary)
+                                                    <img class="max-h-4" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$standing->deckType->icon_secondary}}.png">
                                                 @endif
                                             @else
                                                 <img class="max-h-4" src="/images/substitute.png">

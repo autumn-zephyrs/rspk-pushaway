@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use App\Models\DeckType;
 use App\Repositories\DeckTypeRepository;
 
-class getDeckTypes extends Command
+class GetDeckTypes extends Command
 {
     /**
      * The name and signature of the console command.
@@ -21,7 +21,7 @@ class getDeckTypes extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Populates tables of decktypes';
 
     /**
      * Execute the console command.

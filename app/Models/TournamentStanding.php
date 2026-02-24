@@ -22,7 +22,7 @@ class TournamentStanding extends Model
      *
      * @var array
      */
-    protected $fillable = ['tournament_limitless_id', 'player_username', 'placement', 'deck', 'drop'];
+    protected $fillable = ['tournament_limitless_id', 'player_username', 'placement', 'identifier', 'wins', 'losses', 'ties', 'drop', 'date'];
 
     public function tournament(): BelongsTo
     {
@@ -39,10 +39,31 @@ class TournamentStanding extends Model
         return $this->belongsTo(Player::class, 'player_username', 'username');
     }
 
-    public function deck(): HasOne
+    public function deckCards(): HasMany
     {
-        return $this->hasOne(Deck::class);
+        return $this->hasMany(DeckCard::class);
     }
+
+    public function playerOnePairings(): HasMany 
+    {
+        return $this->HasMany(TournamentPairing::class, 'tournament_limitless_id', 'tournament_limitless_id')->where('player_1', $this->player_username);
+    }
+
+    public function playerTwoPairings(): HasMany 
+    {
+        return $this->HasMany(TournamentPairing::class, 'tournament_limitless_id', 'tournament_limitless_id')->where('player_2', $this->player_username);
+    }
+
+    
+    public function deckType(): BelongsTo
+    {
+        return $this->belongsTo(DeckType::class, 'identifier', 'identifier');
+    }
+
+    // public function getPairingsAttribute()
+    // {
+    //     return $this->playerOnePairings->merge($this->playerTwoPairings);
+    // }
 
     public function getPairingsAttribute() {
         $player_1 = TournamentPairing::where('tournament_limitless_id',  $this->tournament_limitless_id)->where('player_1', $this->player_username)->get();
@@ -51,6 +72,17 @@ class TournamentStanding extends Model
 
         return $result;
     }
+
+    public function getCardlistAttribute() {
+        $s = '';
+        foreach ($this->deckCards as $deckCard) {
+            $dc = json_decode($deckCard);
+            $_s = $s;
+            $s = $_s . $dc->count . ' ' . $dc->card->name . ' ' . $dc->card->set_code . ' ' . $dc->card->number . '\n';
+        }
+        return $s;
+    }
+
 
     public function getWinrateAttribute() {
         $wins = 0;
@@ -63,8 +95,30 @@ class TournamentStanding extends Model
                 $losses++;
             }
         }
-        return [$wins, $losses, $ties];
+
+        $percentage = $wins === 0 ? 0 : $wins / ($wins + $losses + $ties);
+
+        return (object) [
+            'wins' => $wins, 
+            'losses' => $losses, 
+            'ties' => $ties, 
+            'percentage' => round($percentage* 100, 2) . '%'
+        ];
     }
+
+    // public function getWinrateAttribute() {
+    //     $wins = 0;
+    //     $losses = 0;
+    //     $ties = 0;
+    //     foreach ($this->pairings as $pairing) {
+    //         if ($pairing->winner === $this->player_username || $pairing->winner == -1) {
+    //             $wins++;
+    //         } else {
+    //             $losses++;
+    //         }
+    //     }
+    //     return [$wins, $losses, $ties];
+    // }
 
     public function getWinRatioAttribute() {
         $wins = 0;

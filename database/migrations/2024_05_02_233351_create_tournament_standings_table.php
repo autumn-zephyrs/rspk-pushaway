@@ -16,7 +16,12 @@ return new class extends Migration
             $table->text('tournament_limitless_id');
             $table->text('player_username');
             $table->integer('placement');
+            $table->integer('wins')->nullable();
+            $table->integer('losses')->nullable();
+            $table->integer('ties')->nullable();
+            $table->text('identifier')->nullable();
             $table->integer('drop')->nullable();
+            $table->date('date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

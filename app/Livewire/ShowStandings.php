@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Tournament;
+use App\Models\DeckType;
 
 class ShowStandings extends Component
 
@@ -18,6 +19,7 @@ class ShowStandings extends Component
 
     public function render()
     {
-        return view('livewire.show-standings');
+        $types = DeckType::has('tournamentStandings')->withCount(['tournamentStandings'])->orderBy('name', 'ASC')->get();
+        return view('livewire.show-standings', compact('types'));
     }
 }

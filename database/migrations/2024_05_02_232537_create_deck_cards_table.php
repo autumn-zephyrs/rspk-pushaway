@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('deck_cards', function (Blueprint $table) {
             $table->id();
-            $table->integer('deck_id');
+            $table->integer('tournament_standing_id');
             $table->integer('card_id');
             $table->integer('count');
             $table->softDeletes();

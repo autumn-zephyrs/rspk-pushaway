@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Deck;
+use App\Models\TournamentStanding;
 use App\Models\DeckType;
 
 class ShowDeck extends Component
@@ -13,12 +13,12 @@ class ShowDeck extends Component
 
     public function mount($id) 
     {
-        $this->deck = Deck::find($id);
+        $this->deck = TournamentStanding::find($id);
     }
 
     public function render()
     {
-        $types = DeckType::has('decks')->withCount(['decks'])->orderBy('name', 'ASC')->get();
+        $types = DeckType::has('tournamentStandings')->withCount(['tournamentStandings'])->orderBy('name', 'ASC')->get();
         return view('livewire.show-deck', compact('types'));
     }
 }

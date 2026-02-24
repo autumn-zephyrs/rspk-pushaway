@@ -18,7 +18,7 @@
                         <a href="/decks/?page=1&identifier={{$type->identifier}}" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} flex items-center justify-between text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
                             <div class="">
                                 <div class="text-sm">{{$type->name}}</div>
-                                <div class="text-xs">{{$type->decks->count()}} Decks</div>
+                                <div class="text-xs">{{$type->tournamentStandings->count()}} Decks</div>
                             </div>
                             <div class="flex gap-2">
                                 @if($type->icon_primary !== 'substitute')
@@ -51,7 +51,7 @@
                     <div class="mb-2">
                         <div class="flex justify-between items-top">
                             <div class="items-center flex gap-2">
-                                <a href="/tournaments/standings/{{$deck->tournamentStanding->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
+                                <a href="/tournaments/standings/{{$deck->id}}" class="hover:text-slate-700 text-2xl font-bold">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</a>
                                 <div class="flex gap-2">
                                     @if($deck->deckType->icon_primary !== 'substitute')
                                         <img class="max-h-8" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$deck->deckType->icon_primary}}.png">
@@ -65,11 +65,11 @@
                             </div>
                         </div>
                         <a href="/players/{{$deck->player->id}}" class="text-base flex items-center gap-2">By {{$deck->player->name}} ({{$deck->player_username}})
-                            @if($deck->tournamentStanding->player->country != 'XX')
-                            <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$deck->tournamentStanding->player->country}}.png"> 
+                            @if($deck->player->country != 'XX')
+                            <img class="h-4" src="https://limitlesstcg.s3.us-east-2.amazonaws.com/flags/{{$deck->player->country}}.png"> 
                             @endif
                         </a>
-                        <h3 class="text-sm">{{$deck->tournamentStanding->placement === -1 ? "DQd" : $deck->tournamentStanding->placement . ' / ' . $deck->tournamentStanding->tournament->players}} in {{$deck->tournamentStanding->tournament->name}} - {{date("dS M Y", strtotime($deck->tournamentStanding->tournament->date))}}</h3>
+                        <h3 class="text-sm">{{$deck->placement === -1 ? "DQd" : $deck->placement . ' / ' . $deck->tournament->players}} in {{$deck->tournament->name}} - {{date("dS M Y", strtotime($deck->tournament->date))}}</h3>
                     </div>
                     <hr class="">
                     @include('partials/deck')
