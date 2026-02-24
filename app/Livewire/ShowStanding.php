@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\TournamentStanding;
 use App\Models\TournamentPairing;
-use Illuminate\Support\Facades\DB;
+use App\Models\DeckType;
 
 class ShowStanding extends Component
 {
@@ -17,14 +17,17 @@ class ShowStanding extends Component
 
     {
         $this->standing = TournamentStanding::find($id);
+
         $p1 = TournamentPairing::where('tournament_limitless_id', '=', $this->standing->tournament_limitless_id)->where('player_1', '=', $this->standing->player_username)->get();
         $p2 = TournamentPairing::where('tournament_limitless_id', '=', $this->standing->tournament_limitless_id)->where('player_2', '=', $this->standing->player_username)->get();
         $this->pairings = $p1->merge($p2);
+
         $this->deck = $this->standing;
     }
 
     public function render()
     {
-        return view('livewire.show-standing');
+        $types = DeckType::has('tournamentStandings')->withCount(['tournamentStandings'])->orderBy('name', 'ASC')->get();
+        return view('livewire.show-standing', compact('types'));
     }
 }

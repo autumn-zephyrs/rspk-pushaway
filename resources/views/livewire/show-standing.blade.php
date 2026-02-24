@@ -1,24 +1,54 @@
 
 <div class="w-screen">
     <div class="lg:grid lg:grid-cols-12">
+        <!-- This is the left panel section -->
         <div class="hidden lg:flex col-start-1 col-end-3">
             <div class="w-2/12 fixed h-screen bg-holon-200">
+                <div class="py-1 px-2">
+                    <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Deck Archetypes</h3>
+                </div>
+                <hr>
+                <div class="flex-1 bg-holon-50 overflow-auto h-1/2 shadow-inner">
+                    <a href="/decks/?page=1">
+                        <div class="cursor-pointer px-4 text-base text-sm text-gray-800 hover:text-gray-100 hover:bg-holon-500 py-2 bg-holon-50">All decks</div>
+                    </a>
+                    <hr>
+                    <div class="divide-y overflow-scroll-y divide-holon-200">
+                        @foreach($types as $index => $type)
 
+                        <a href="/decks/?page=1&identifier={{$type->identifier}}" class="{{($index % 2 == 0) ? 'bg-holon-100' : 'bg-holon-50'}} flex items-center justify-between text-gray-800 hover:bg-holon-500 hover:text-gray-100 cursor-pointer px-4 text-base">
+                            <div class="">
+                                <div class="text-sm">{{$type->name}}</div>
+                                <div class="text-xs">{{$type->tournamentStandings->count()}} Decks</div>
+                            </div>
+                            <div class="flex gap-2">
+                                @if($type->icon_primary !== 'substitute')
+                                    <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_primary}}.png">
+                                    @if($type->icon_secondary)
+                                        <img class="h-6 aspect-square" src="https://r2.limitlesstcg.net/pokemon/gen9/{{$type->icon_secondary}}.png">
+                                    @endif
+                                @else
+                                    <img class="max-h-6" src="/images/substitute.png">
+                                @endif
+                            </div>                 
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
 
         <div class="col-start-4 col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 px-4 bg-gray-50 rounded mb-8 pb-4">
             <div class="items-center flex">
                 <div  x-on:click="open = false" x-show="open != false"  class="my-4 flex pagination items-center rounded-lg lg:px-4 px-2 py-1">
-                    <a href="/tournaments/{{$standing->tournament->limitless_id}}" class="hover:cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-holon-600 cursor-default leading-5 rounded-md select-none">
-                        Back
-                    </a>
+
                 </div>
                 <div class="text-sm text-gray-600">
                     <a href="/tournaments/{{$standing->tournament->limitless_id}}" class="hover:text-holon-500">{{$standing->tournament->name}}</a> -> {{$standing->player->name}}
                 </div>
             </div>
-            <div x-data="{ page: 'pairings' }" class="bg-holon-200 flex-none rounded-lg my-4">
+            <div x-data="{ page: 'decklist' }" class="bg-holon-200 flex-none rounded-lg my-4">
                 <div class="lg:px-12 px-4 py-4">
                     <div class="flex gap-2 justify-between items-top mb-4">
                         <div class="items-center gap-2">

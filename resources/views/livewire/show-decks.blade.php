@@ -52,7 +52,7 @@
                         </div>
                     @endif
                     <div class="{{($index % 2 == 0) ? 'bg-holon-50' : 'bg-holon-100'}} hover:bg-holon-200 flex-none hover:text-slate-700 hover:cursor-pointer ">
-                        <a href="/decks/{{$deck->id}}" class="grid grid-cols-10 px-6">
+                        <a href="/tournaments/standings/{{$deck->id}}" class="grid grid-cols-10 px-6">
                             <div class="col-span-5 flex items-center gap-2 border-r border-holon-400 lg:py-1 py-2 justify-between">
                                 <div class="text-sm lg:text-base">{{isset($deck->deckType) ? $deck->deckType->name : 'notfound'}}</div>
                                 <div class="flex gap-2 pr-4">

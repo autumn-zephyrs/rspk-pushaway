@@ -48,6 +48,7 @@ class ShowDecks extends Component
             'decks' => TournamentStanding::has('deckCards')
                 ->where('identifier', 'like', '%'.$this->identifier.'%')
                 ->orderBy('date', 'DESC')
+                ->orderBy('tournament_limitless_id', 'DESC')
                 ->orderBy('placement', 'ASC')
                 ->where('player_username', 'like', '%'.$this->query.'%')
                 ->paginate(20),
