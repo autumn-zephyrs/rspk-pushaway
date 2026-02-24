@@ -1,23 +1,7 @@
 
 <div class="w-screen">
     <div class="lg:grid lg:grid-cols-12">
-        <div class="hidden lg:flex col-start-1 col-end-3">
-           <div class="w-2/12 fixed h-screen bg-holon-200">
-                <div class="py-1 px-2">
-                    <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Deck Archetypes</h3>
-                </div>
-                <hr>
-                @include('partials/deck-types')
-                <div class="mt-2">
-                    <div class="py-1 px-2">
-                        <h3 class="text-base font-bold my-2 flex items-center text-gray-800">Search by Username</h3>
-                    </div>
-                    <div class="flex justify-center mx-2">
-                        <input type="text" wire:change.live="search()" wire:model.live="query" class="h-8 w-11/12 shadow-inner rounded border-holon-400" placeholder="jklacz...">
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('partials/deck-types')
         <div class="lg:col-start-4 lg:col-span-8 mx-auto flex-1 h-auto justify-center w-full mt-4 lg:px-8 bg-gray-50 rounded mb-8 pb-4 z-1">
             <div class="items-center lg:px-0 px-4">
                 <div class="text-xl font-bold lg:mb-0 mb-4">Latest Decks</div>
