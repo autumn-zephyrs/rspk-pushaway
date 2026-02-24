@@ -58,7 +58,7 @@
             <hr>
             <div class="overflow-scroll-y h-60">
                 @foreach ($archetypes as $index=>$archetype)
-                    <a href="" class="border-b-1 hover:bg-holon-200 hover:text-slate-700 hover:cursor-pointer grid grid-cols-12 px-6 flex items-center">
+                    <div class="border-b-1 hover:bg-holon-200 hover:text-slate-700 grid grid-cols-12 px-6 flex items-center">
                         <div class="text-gray-800 text-sm lg:text-base lg:col-span-4 col-span-6 ml-2 border-holon-400 py-1 flex justify-between items-center">
                             {{$archetype->name}}
                             <div class="flex gap-2 pr-4">
@@ -77,7 +77,7 @@
                         <div class="text-gray-800 text-xs lg:text-base col-span-2 lg:col-span-1 ml-2">{{$archetype->winrate}}</div>
                         <div class="text-gray-800 text-xs lg:text-base col-span-2 lg:col-span-1 ml-2">{{$archetype->yearlyWins + $archetype->yearlyLosses + $archetype->yearlyTies}}</div>
                         <div class="text-gray-800 text-xs lg:text-base col-span-2 lg:col-span-1 ml-2">{{$archetype->wins + $archetype->losses + $archetype->ties}}</div>
-                    </a>
+                    </div>
                     <hr>
                 @endforeach
             <div>
