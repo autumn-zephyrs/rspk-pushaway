@@ -66,6 +66,10 @@ Route::get('tournaments/{limitless_id}', ShowStandings::class)
 Route::get('tournaments/standings/{id}', ShowStanding::class)
     ->name('standing');
 
+Route::get('healthcheck', function() {
+    return response()->json(['status' => 'ok']);
+})->name('healthcheck');
+
 Route::get('password/reset', Email::class)
     ->name('password.request');
 
